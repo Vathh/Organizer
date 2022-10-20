@@ -1,7 +1,7 @@
-export const INITIAL_LOGIN_STATE = {
+export const INITIAL_LOGIN_FETCH_STATE = {
   loading: false,
   error: false,
-  post: {}
+  data: {}
 }
 
 export const loginPostReducer = (state, action) => {
@@ -15,7 +15,7 @@ export const loginPostReducer = (state, action) => {
       return{
         ...state,
         loading: false,
-        post: action.payload
+        data: action.payload
       }
     case "FETCH_ERROR":
       return{
