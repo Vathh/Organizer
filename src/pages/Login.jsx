@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {INITIAL_LOGIN_FETCH_STATE, loginPostReducer} from '../helpers/loginPostReducer'
 import {LOGIN_TYPES} from '../helpers/actionTypes'
 import { INITIAL_LOGIN_FORM_STATE, loginFormReducer } from '../helpers/loginFormReducer'
+import LogoSvg from '../img/OGARNIZER.svg'
 
 //#region STYLES
 const Container = styled.div`
@@ -10,6 +11,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgb(53,6,94);
@@ -43,7 +45,7 @@ const Input = styled.input`
   border-radius: 6px;
   background: rgba(105,28,94,1);
   color: white;
-  transition: transform .3s;
+  transition: transform .3fs;
 
   ::placeholder{
     color: white;
@@ -65,6 +67,12 @@ const SubmitBtn = styled.button`
   color:white;
   border: none;
   background-size: cover;
+`
+
+const Logo = styled.img`
+  height: 300px;
+  width: 300px;
+  filter: invert(86%) sepia(21%) saturate(76%) brightness(50%) contrast(107%);
 `
 
 
@@ -104,6 +112,7 @@ const Login = () => {
 
   return (
     <Container>
+      <Logo src={LogoSvg}/>
         <LoginPannel>
           <FormInput>
             <Label>Login:</Label>
