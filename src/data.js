@@ -1,5 +1,42 @@
-const closedJobs = [
+export const jobs = [
   {
+    Id: 1,
+    UserId : 5,
+    CreatedDate : new Date(2022,6,11),
+    Priority : 1,
+    Description : "Wymiana bębna Padma",
+    Place : "Padma 3.0 magazyn",
+    Object : "BIZHUB 223",
+    AdditionalInfo : "Brudzi, sprawdzic beben i transfer",
+    UpdateInfo : ""
+  },
+  {
+    Id: 2,
+    UserId : 6,
+    CreatedDate : new Date(2022,10,9),
+    Priority : 2,
+    Description : "Naprawa finiszera Krystyny",
+    Place : "Utrata 2c/50",
+    Object : "BIZHUB C368",
+    AdditionalInfo : "Finiszer wyrzuca blad C-0512",
+    UpdateInfo : ""
+  },
+  {
+    Id: 3,
+    UserId : 7,
+    CreatedDate : new Date(2022,2,11),
+    Priority : 3,
+    Description : "Lotto Augustów",
+    Place : "",
+    Object : "",
+    AdditionalInfo : "",
+    UpdateInfo : ""
+  }
+]
+
+export const closedJobs = [
+  {
+    Id: 1,
     UserId : 7,
     CreatedDate : new Date(2022,1,11),
     Priority : 2,
@@ -13,6 +50,7 @@ const closedJobs = [
     CloseUserId : 6
   },
   {
+    Id: 2,
     UserId : 5,
     CreatedDate : new Date(2022,2,11),
     Priority : 3,
@@ -27,50 +65,19 @@ const closedJobs = [
   } 
 ]
 
-const jobs = [
-  {
-    UserId : 5,
-    CreatedDate : new Date(2022,6,11),
-    Priority : 1,
-    Description : "Wymiana bębna Padma",
-    Place : "Padma 3.0 magazyn",
-    Object : "BIZHUB 223",
-    AdditionalInfo : "Brudzi, sprawdzic beben i transfer",
-    UpdateInfo : ""
-  },
-  {
-    UserId : 6,
-    CreatedDate : new Date(2022,10,9),
-    Priority : 2,
-    Description : "Naprawa finiszera Krystyny",
-    Place : "Utrata 2c/50",
-    Object : "BIZHUB C368",
-    AdditionalInfo : "Finiszer wyrzuca blad C-0512",
-    UpdateInfo : ""
-  },
-  {
-    UserId : 7,
-    CreatedDate : new Date(2022,2,11),
-    Priority : 3,
-    Description : "Lotto Augustów",
-    Place : "",
-    Object : "",
-    AdditionalInfo : "",
-    UpdateInfo : ""
-  }
-]
-
-const services = [
+export const services = [
     {
-        UserId : 5,
-        CreatedDate : new Date(2022,3,25),
-        Priority : 1,
-        Description : "Naprawa drukarki KRAM",
-        Object : "HP 2055",
-        AdditionalInfo : "zacina duplex",
-        UpdateInfo : ""
+      Id: 1,
+      UserId : 5,
+      CreatedDate : new Date(2022,3,25),
+      Priority : 1,
+      Description : "Naprawa drukarki KRAM",
+      Object : "HP 2055",
+      AdditionalInfo : "zacina duplex",
+      UpdateInfo : ""
     },
     {
+      Id: 2,
       UserId : 6,
       CreatedDate : new Date(2022,1,16),
       Priority : 2,
@@ -80,6 +87,7 @@ const services = [
       UpdateInfo : ""
     },
     {
+      Id: 3,
       UserId : 7,
       CreatedDate : new Date(2022,1,18),
       Priority : 3,
@@ -90,7 +98,7 @@ const services = [
     }
 ]
 
-const closedServices = [
+export const closedServices = [
   {
     Id: 1,
     UserId : 6,
@@ -105,6 +113,7 @@ const closedServices = [
     CloseUserId : 5
   },
   {
+    Id: 2,
     UserId : 7,
     CreatedDate : new Date(2022,1,23),
     Priority : 3,
@@ -118,7 +127,7 @@ const closedServices = [
   }
 ]
 
-const orders = [
+export const orders = [
   {
     Id: 1,
     UserId : 6,
@@ -154,7 +163,7 @@ const orders = [
   }
 ]
 
-const closedOrders = [
+export const closedOrders = [
   {
     Id: 1,
     UserId : 7,
@@ -185,7 +194,7 @@ const closedOrders = [
   }
 ]
 
-const users = [
+export const users = [
   {
     Id: 5,
     Name : "Arek",
@@ -216,7 +225,7 @@ const users = [
   }
 ]
 
-const roles = [
+export const roles = [
   {
     Id: 1,
     Name : "Manager"

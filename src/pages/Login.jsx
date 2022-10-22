@@ -1,23 +1,23 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import styled from 'styled-components'
 import {INITIAL_LOGIN_FETCH_STATE, loginPostReducer} from '../helpers/loginPostReducer'
 import {LOGIN_TYPES} from '../helpers/actionTypes'
 import { INITIAL_LOGIN_FORM_STATE, loginFormReducer } from '../helpers/loginFormReducer'
 import LogoSvg from '../img/OGARNIZER.svg'
+import { users } from '../data'
 
 
 //#region STYLES
 const Container = styled.div`
-  position: relative;
   height: 100vh;
   width: 100vw;
-  padding: 30px 0px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0px;
   background: #35065e;
   background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
-  background-color: rgba(0,0,0,.5);
 `
 const Logo = styled.img`
   height: 300px;
@@ -27,16 +27,16 @@ const Logo = styled.img`
 `
 
 const LoginPannel = styled.form`
-  position: relative;
   width: 300px;
-  margin: 0 20px;
+  position: relative;
   top: 50px;
   display: flex;
   flex-direction: column;
+  margin: 0 20px;
+  padding: 15px;
   background-color: rgba(0,0,0,.5);
   color: white;
   border-radius: 15px;
-  padding: 15px;
 `
 
 const FormInput = styled.div`
@@ -47,36 +47,38 @@ const FormInput = styled.div`
 `
 const Label = styled.label`
   position: absolute;
+  top: 8px;
   left: 10px;
-  top: 14px;
-  transition: all .2s;
+  font-size: 18px;
   padding: 0 2px;
+  transition: all .2s;
+  letter-spacing: 1px;
   z-index: 1;
 
   ::before{
     content: "";
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    left: 0;
     height: 5px;
     background: rgba(105,28,94,1);
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 100%;
     z-index: -1;
   }
 `
 
 const Input = styled.input`
-  padding: 0.4rem;
   width: 100%;
   height: 100%;
+  padding: 0.4rem;
+  padding-left: 12px;
+  font-size: 18px;
   border: 2px solid #3d1a48; 
   border-radius: 5px;
   background: rgba(105,28,94,1);
-  font-size: 18px;
-  outline: none;
   color: white;
+  outline: none;
   transition: all .3s;
-  padding-left: 12px;
 
   :focus{
     border: 2px solid #cda619;
@@ -87,21 +89,21 @@ const Input = styled.input`
     }
 
     +label{
-      top: -10px;
+      top: -13px;
       color: #cda619;
     }
   }  
 
   :not(:placeholder-shown){
     +label{
-      top: -10px;
+      top: -13px;
       color: #cda619;
     }
   }  
 
   ::placeholder{
-    color: white;
     font-size: 16px;
+    color: white;
     opacity: 0;
     transition: all .3s;
   }
@@ -109,14 +111,13 @@ const Input = styled.input`
 
 const SubmitBtn = styled.button`
   margin: 20px 20px 15px;
-  font-size: 18px;
   padding: 9px 0;
+  font-size: 18px;
+  border: none;
   border-radius: 10px;
   background: rgb(53,6,94);
-background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%);
+  background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%);
   color:white;
-  border: none;
-  background-size: cover;
   outline: none;
   transition: transform .3s;
 
@@ -150,6 +151,7 @@ const Login = () => {
 
   //#region FORM SERVICE
   const [formState, formDispatch] = useReducer(loginFormReducer, INITIAL_LOGIN_FORM_STATE);
+  const [authCorrect, setAuthCorrect] = useState(false);
 
   const handleChange = (e) => {
     formDispatch({
@@ -158,6 +160,13 @@ const Login = () => {
     });
   };
   //#endregion
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(users.find(x => x.Login === formState.login) && users.find(x => x.PasswordHash === formState.password)){
+      setAuthCorrect(true);
+    }
+  }
   
 
   return (
@@ -173,7 +182,7 @@ const Login = () => {
             <Input type="text" placeholder='Wpisz hasło' onChange={handleChange} name={"password"}/>
             <Label>Hasło</Label>
           </FormInput>
-          <SubmitBtn>Zaloguj się</SubmitBtn>
+          <SubmitBtn onClick={handleSubmit}>Zaloguj się</SubmitBtn>
         </LoginPannel>
     </Container>
   )
