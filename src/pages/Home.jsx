@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components"
+import { redirect } from 'react-router-dom'
 
 //#region STYLES
 const Container = styled.div`
@@ -8,6 +10,10 @@ const Container = styled.div`
 
 
 const Home = () => {
+  const auth = useSelector((state) => state.auth);
+  if(!auth.confirmed){
+    return redirect("/");
+  }
   return (
     <Container>
       

@@ -1,10 +1,11 @@
-import React, { useReducer, useState } from 'react'
+import React, { useReducer } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components'
-import {INITIAL_LOGIN_FETCH_STATE, loginPostReducer} from '../helpers/loginPostReducer'
-import {LOGIN_TYPES} from '../helpers/actionTypes'
 import { INITIAL_LOGIN_FORM_STATE, loginFormReducer } from '../helpers/loginFormReducer'
 import LogoSvg from '../img/OGARNIZER.svg'
 import { users } from '../data'
+import { updateError, updateSuccess } from '../redux/authSlice';
+import { updateUser } from '../redux/userSlice'
 
 
 //#region STYLES
@@ -107,10 +108,17 @@ const Input = styled.input`
     opacity: 0;
     transition: all .3s;
   }
+
+  :-webkit-autofill,
+  :-webkit-autofill:focus{
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+
+  
 `
 
 const SubmitBtn = styled.button`
-  margin: 20px 20px 15px;
+  margin: 20px 20px 45px;
   padding: 9px 0;
   font-size: 18px;
   border: none;
@@ -126,46 +134,69 @@ const SubmitBtn = styled.button`
   }
 `
 
+const ErrorMsg = styled.span`
+  position: absolute;
+  text-align: center;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
 
 //#endregion
 
 const Login = () => {
 
-  //#region FETCHSERVICE
-  const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
-
-  const handleFetch = () => {
-    fetchDispatch({type:LOGIN_TYPES.FETCH_START})
-      fetch("https://")
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          fetchDispatch({type:LOGIN_TYPES.FETCH_SUCCESS, payload: data});
-        })
-        .catch((err) => {
-          fetchDispatch({tpye: LOGIN_TYPES.FETCH_ERROR});
-        })
-  }
-  //#endregion
-
-  //#region FORM SERVICE
   const [formState, formDispatch] = useReducer(loginFormReducer, INITIAL_LOGIN_FORM_STATE);
-  const [authCorrect, setAuthCorrect] = useState(false);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  // //#region FETCHSERVICE
+  // const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
+
+  // const handleFetch = () => {
+  //   fetchDispatch({type:LOGIN_TYPES.FETCH_START})
+  //     fetch("https://")
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         fetchDispatch({type:LOGIN_TYPES.FETCH_SUCCESS, payload: data});
+  //       })
+  //       .catch((err) => {
+  //         fetchDispatch({tpye: LOGIN_TYPES.FETCH_ERROR});
+  //       })
+  // }
+  // //#endregion
+
+  const handleInputChange = (e) => {
     formDispatch({
       type:"CHANGE_INPUT", 
       payload:{name: e.target.name, value: e.target.value}
     });
-  };
-  //#endregion
+  };  
   
-  const handleSubmit = (e) => {
+  const handleLoginBtn = (e) => {
     e.preventDefault();
-    if(users.find(x => x.Login === formState.login) && users.find(x => x.PasswordHash === formState.password)){
-      setAuthCorrect(true);
-    }
+    let ciasto;
+    let name = "";
+    let JWTTOKEN = "";
+    if(users.find(user => user.Login === formState.login && user.PasswordHash === formState.password)){
+      ciasto = users.find(x => x.Login === formState.login);
+      name = ciasto.Name;
+      JWTTOKEN = "testJWTkey"
+    }    
+
+    if(name !== ""){
+      dispatch(updateUser({name, JWTTOKEN}));
+      dispatch(updateSuccess());
+      formDispatch({
+        type:"CHANGE_INPUT", 
+        payload:{name: "", value: ""}
+      });
+    }else{
+      dispatch(updateError());
+    }    
   }
   
 
@@ -174,15 +205,16 @@ const Login = () => {
       <Logo src={LogoSvg}/>
         <LoginPannel>
           <FormInput>
-            <Input type="text" placeholder='Wpisz swój login' onChange={handleChange} name={"login"} />
+            <Input type="text" placeholder='Wpisz swój login' onChange={handleInputChange} name={"login"} />
             <Label >Login</Label>
           </FormInput>
 
           <FormInput>
-            <Input type="text" placeholder='Wpisz hasło' onChange={handleChange} name={"password"}/>
+            <Input type="text" placeholder='Wpisz hasło' onChange={handleInputChange} name={"password"}/>
             <Label>Hasło</Label>
           </FormInput>
-          <SubmitBtn onClick={handleSubmit}>Zaloguj się</SubmitBtn>
+          <SubmitBtn onClick={handleLoginBtn}>Zaloguj się</SubmitBtn>
+          {auth.error && <ErrorMsg>Coś poszło nie tak.. <br/>Spróbuj ponownie</ErrorMsg>}
         </LoginPannel>
     </Container>
   )
