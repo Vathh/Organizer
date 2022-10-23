@@ -6,6 +6,7 @@ import LogoSvg from '../img/OGARNIZER.svg'
 import { users } from '../data'
 import { updateError, updateSuccess } from '../redux/authSlice';
 import { updateUser } from '../redux/userSlice'
+import { useNavigate } from 'react-router-dom';
 
 
 //#region STYLES
@@ -150,6 +151,7 @@ const Login = () => {
   const [formState, formDispatch] = useReducer(loginFormReducer, INITIAL_LOGIN_FORM_STATE);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  let navigate = useNavigate();  
 
   // //#region FETCHSERVICE
   // const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
@@ -194,6 +196,7 @@ const Login = () => {
         type:"CHANGE_INPUT", 
         payload:{name: "", value: ""}
       });
+      navigate('/home');
     }else{
       dispatch(updateError());
     }    
