@@ -182,15 +182,15 @@ const Login = () => {
     e.preventDefault();
     let ciasto;
     let name = "";
-    let JWTTOKEN = "";
+    let jwtKey = "";
     if(users.find(user => user.Login === formState.login && user.PasswordHash === formState.password)){
       ciasto = users.find(x => x.Login === formState.login);
       name = ciasto.Name;
-      JWTTOKEN = "testJWTkey"
+      jwtKey = "testJWTkey"
     }    
 
     if(name !== ""){
-      dispatch(updateUser({name, JWTTOKEN}));
+      dispatch(updateUser({name, jwtKey}));
       dispatch(updateSuccess());
       formDispatch({
         type:"CHANGE_INPUT", 

@@ -11,6 +11,7 @@ const Container = styled.div`
   background: rgba(0,0,0,.2);
   padding: 5px 10px;
   justify-content: flex-end;
+  z-index: 1000;
 `
 const Signature = styled.p`
   position: relative;
@@ -22,7 +23,7 @@ const Footer = () => {
   return (
     <Container>
       
-      <Signature>&copy; {(new Date()).getFullYear()} SunnyVale</Signature>
+      <Signature>&copy; {new Date().getFullYear()} SunnyVale</Signature>
 
     </Container>
   )

@@ -8,7 +8,8 @@ export const userSlice = createSlice({
   },
   reducers:{
     updateUser: (state, action) => {
-      state.userInfo = action.payload
+      state.name = action.payload.name;
+      state.jwtKey = action.payload.jwtKey;
     }
   }
 })
