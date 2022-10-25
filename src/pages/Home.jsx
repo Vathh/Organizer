@@ -6,14 +6,15 @@ import MobileNav from "../components/MobileNav";
 import { changeNavVisibility } from '../redux/mobileNavSlice';
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
+import Counter from "../components/Counter";
 
 //#region STYLES
 const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;  
-  overflow: hidden;
-`
+  //overflow-x: hidden;
+  `
 
 const HomeContainer = styled.div`
   position: relative;
@@ -22,6 +23,7 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
   background: #35065e;
   background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
   z-index: 1;
@@ -65,6 +67,17 @@ const Title = styled.p`
   padding-bottom: 10px;
 `
 
+const CountersContainer = styled.div`
+  position: relative;
+  width: 80%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-top: 50px;
+  color: #fff;
+  background-color: red;
+`
+
 //#endregion
 
 
@@ -95,8 +108,14 @@ const Home = () => {
             {dayOfWeekToDisplay}, {dayOfMonth}
           </WelcomeDate>
           <Browser />
+          <CountersContainer>
+            <Title style={{position: 'absolute'}}>Oczekujące</Title>
+            <Counter/>
+          </CountersContainer>
           <TasksContainer>
-            <Title>Zadania</Title>
+            <Title>Ostatnio dodane</Title>
+            <TaskIcon />
+            <TaskIcon />
             <TaskIcon />
           </TasksContainer>
       </HomeContainer>

@@ -6,15 +6,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  width: 75%;
+  width: 80%;
   display: flex;
   align-items: center;
   margin-top: 50px;
   padding: 15px 20px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
   background: rgba(85, 85, 85, 0.435);
 `
 const Input = styled.input`

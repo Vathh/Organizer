@@ -56,14 +56,15 @@ const Label = styled.label`
   transition: all .2s;
   letter-spacing: 1px;
   z-index: 1;
+  pointer-events: none;
 
   ::before{
     content: "";
     width: 100%;
     position: absolute;
-    top: 10px;
+    top: 13px;
     left: 0;
-    height: 5px;
+    height: 2px;
     background: rgba(105,28,94,1);
     z-index: -1;
   }

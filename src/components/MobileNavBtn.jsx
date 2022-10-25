@@ -8,7 +8,7 @@ import { changeNavVisibility } from '../redux/mobileNavSlice';
 const NavBtn = styled.button`
   height: 50px;
   width: 50px;
-  position: fixed;
+  position: absolute;
   top: 30px;
   left: 30px;
   padding: 5px;

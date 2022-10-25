@@ -4,6 +4,7 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 
 //#region STYLES
 const Container = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
@@ -26,7 +27,14 @@ const IconStyles = {
 }
 
 const StateInfoIcon = styled.div`
-  
+  position: absolute;
+  right: 20px;
+  height: 8px;
+  width: 8px;
+  background: #ff0000;
+  background: #09ff00;
+  background: #ffe100;
+  border-radius: 50%;
 `
 //#endregion
 
@@ -35,6 +43,7 @@ const TaskIcon = () => {
     <Container>
       <HourglassEmptyIcon style={IconStyles}/>
       <Title>Naprawa bizhuba c253</Title>
+      <StateInfoIcon />
     </Container>
   )
 }
