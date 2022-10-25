@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
+//#region STYLES
 const Container = styled.div`
   position: relative;
   width: 75%;
@@ -14,7 +15,7 @@ const Container = styled.div`
   border-bottom-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background: #5555556f;
+  background: rgba(85, 85, 85, 0.435);
 `
 const Input = styled.input`
   background: none;
@@ -37,15 +38,23 @@ const MagnifierIconStyles = {
 const SearchIconStyles = {
   position: 'absolute',
   right: '10px',
+  color: '#fff'
 }
+
+//#endregion
 
 
 const Browser = () => {
+  
+  const handleSearchBtn = () => {
+    
+  }
+
   return (
     <Container>
       <SearchIcon style={MagnifierIconStyles}/>
       <Input placeholder='Szukaj...' />
-      <ArrowForwardIcon style={SearchIconStyles}/>
+      <ArrowForwardIcon style={SearchIconStyles} onClick={handleSearchBtn}/>
     </Container>
   )
 }

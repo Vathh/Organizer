@@ -4,6 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeNavVisibility } from '../redux/mobileNavSlice';
 
+//#region STYLES
 const NavBtn = styled.button`
   height: 50px;
   width: 50px;
@@ -28,13 +29,14 @@ const arrowIconStyles = {
 
 const StylesForVisibleNav = {
   left: '-100px',
-  transform: 'rotate(180deg) scale(1.43)'
+  transform: 'rotate(-180deg) scale(1.43)'
 }
 
 const StylesForHiddenNav = {
   left: '30px',
   transform: 'rotate(0deg)'
 }
+//#endregion
 
 const MobileNavBtn = () => {
 

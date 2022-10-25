@@ -5,12 +5,14 @@ import MobileNavBtn from "../components/MobileNavBtn";
 import MobileNav from "../components/MobileNav";
 import { changeNavVisibility } from '../redux/mobileNavSlice';
 import Browser from "../components/Browser";
+import TaskIcon from "../components/TaskIcon";
 
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  min-height: 100vh;
-  min-width: 100vw;  
+  height: 100vh;
+  width: 100vw;  
+  overflow: hidden;
 `
 
 const HomeContainer = styled.div`
@@ -49,6 +51,20 @@ const WelcomeDate = styled.span`
   color: #fff;
 `
 
+const TasksContainer = styled.div`
+  position: relative;
+  width: 80%;
+  margin-top: 50px;
+  color: #fff;
+  background-color: transparent;
+`
+
+const Title = styled.p`
+  font-size: 18px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+`
+
 //#endregion
 
 
@@ -79,6 +95,10 @@ const Home = () => {
             {dayOfWeekToDisplay}, {dayOfMonth}
           </WelcomeDate>
           <Browser />
+          <TasksContainer>
+            <Title>Zadania</Title>
+            <TaskIcon />
+          </TasksContainer>
       </HomeContainer>
     </Container>
   )
