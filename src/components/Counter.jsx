@@ -1,26 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import FunctionsIcon from '@mui/icons-material/Functions';
+import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
 
 //#region STYLES
 
 const Container = styled.div`
-  width: 30%;
-  height: 100px;
+  width: 31%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  background: green;
   border-radius: 15px;
+  padding-bottom: 5px;
+
+  :first-of-type{
+    background: rgb(207,141,138);
+    background: linear-gradient(0deg, rgba(207,141,138,.5) 0%, rgba(207,182,181,.5) 50%);
+    background: rgb(255,235,78);
+    background: linear-gradient(0deg, rgba(255,235,78,.5) 0%, rgba(255,249,202,.5) 50%);
+  }
+
+  :nth-of-type(2){
+    background: rgb(156,31,26);
+    background: linear-gradient(0deg, rgba(156,31,26,.7) 0%, rgba(156,102,100,.7) 50%);
+  }
+
+  :nth-of-type(3){
+    background: rgb(78,166,255);
+    background: linear-gradient(0deg, rgba(78,166,255,.4) 0%, rgba(159,201,243,.4) 50%);
+    
+  }
 
 `
 
 const Title = styled.p`
   font-size: 18px;
   text-align: center;  
+  padding: 10px 0;
 `
 
 const Line = styled.div`
@@ -28,14 +46,16 @@ const Line = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-around;
+  padding-bottom: 8px;
 `
 
 const IconStyles = {
-  height: '20px'
+  height: '31px'  
 }
 
 const Count = styled.p`
-  
+font-size: 24px;
+  padding-right: 2px;
 `
 
 //#endregion
@@ -49,7 +69,7 @@ const Counter = () => {
           <Count>3</Count>
         </Line>
         <Line>
-          <HourglassEmptyIcon style={IconStyles}/>
+          <AssignmentLateIcon style={IconStyles}/>
           <Count>6</Count>
         </Line>
         <Line>

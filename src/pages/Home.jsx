@@ -56,7 +56,7 @@ const WelcomeDate = styled.span`
 const TasksContainer = styled.div`
   position: relative;
   width: 80%;
-  margin-top: 50px;
+  margin-top: 30px;
   color: #fff;
   background-color: transparent;
 `
@@ -76,7 +76,6 @@ const CountersContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 50px;
   color: #fff;
-  background-color: red;
 `
 
 //#endregion
