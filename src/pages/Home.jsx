@@ -13,8 +13,8 @@ const Container = styled.div`
   position: relative;
   height: 100vh;
   width: 100vw;  
-  //overflow-x: hidden;
-  `
+  overflow-x: hidden;
+`
 
 const HomeContainer = styled.div`
   position: relative;
@@ -71,8 +71,9 @@ const CountersContainer = styled.div`
   position: relative;
   width: 80%;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-top: 50px;
   color: #fff;
   background-color: red;
@@ -109,7 +110,8 @@ const Home = () => {
           </WelcomeDate>
           <Browser />
           <CountersContainer>
-            <Title style={{position: 'absolute'}}>Oczekujące</Title>
+            <Counter/>
+            <Counter/>
             <Counter/>
           </CountersContainer>
           <TasksContainer>
