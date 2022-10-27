@@ -31,8 +31,8 @@ const HomeContainer = styled.div`
 `
 
 const StylesForVisibleNav = {
-  left: '60%',
-  transform: 'scale(0.7)',
+  left: '70%',
+  transform: 'scale(0.85)',
   borderRadius: '40px'
 }
 

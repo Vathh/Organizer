@@ -28,8 +28,8 @@ const arrowIconStyles = {
 }
 
 const StylesForVisibleNav = {
-  left: '-100px',
-  transform: 'rotate(-180deg) scale(1.43)'
+  left: '-90px',
+  transform: 'rotate(-180deg) scale(1.2)'
 }
 
 const StylesForHiddenNav = {
