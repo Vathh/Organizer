@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components"
+import { updateUser } from "../redux/userSlice";
 import { Navigate } from 'react-router-dom'
+import styled from "styled-components"
+
 import MobileNavBtn from "../components/MobileNavBtn";
 import MobileNav from "../components/MobileNav";
-import { changeNavVisibility } from '../redux/mobileNavSlice';
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
+import AddIcon from '@mui/icons-material/Add';
 
 //#region STYLES
 const Container = styled.div`
@@ -78,6 +80,28 @@ const CountersContainer = styled.div`
   color: #fff;
 `
 
+const AddTaskBtn = styled.div`
+  position: absolute;
+  bottom: 65px;
+  right: 35px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #35065e;
+  background: linear-gradient(60deg, #2424ffdf 0%, #8818ff 65%, #2424ffdf 100%);
+  box-shadow: 0 0 10px black;
+  z-index: 100;
+
+  svg{
+    height: 25px;
+    width: 25px;
+    color: #fff;
+  }
+`
+
 //#endregion
 
 
@@ -88,8 +112,9 @@ const Home = () => {
   const dayOfMonth = new Date().getDate();
   const mobileNav = useSelector((state) => state.mobileNav);  
   const user = useSelector((state) => state.user);
-  
-  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();  
+  const auth = useSelector((state) => state.auth); 
+
   if(!auth.confirmed){
     return <Navigate to='/'/>
   }
@@ -120,6 +145,9 @@ const Home = () => {
             <TaskIcon />
           </TasksContainer>
       </HomeContainer>
+      <AddTaskBtn>
+        <AddIcon />
+      </AddTaskBtn>
     </Container>
   )
 }

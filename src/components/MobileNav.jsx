@@ -5,6 +5,10 @@ import AvatarGraphic from '../img/avatar.jpg'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useSelector } from 'react-redux';
+import { updateUser } from '../redux/userSlice';
 
 //#region STYLES
 const Page = styled.div`
@@ -24,8 +28,8 @@ const Container = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
-  //background: red;
   margin-left: 15%;
+  transition: transform .6s;
 `
 
 const AvatarContainer = styled.div`
@@ -68,15 +72,19 @@ const UserName = styled.p`
 const NavLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 100px;
 `
 
 const NavLink = styled(Link)`
   display: flex;
-  padding: 10px 0;
+  padding: 12px 0;
   color: #fff;
   font-size: 22px;
   text-decoration: none;
+
+  :last-of-type{
+    margin-top: 70px;
+  }
 `
 
 const IconStyles = {
@@ -88,9 +96,16 @@ const IconStyles = {
 //#endregion
 
 const MobileNav = () => {
+
+  const mobileNav = useSelector((state) => state.mobileNav);
+  
+  const handleLogoutBtn = () => {    
+    dispatch(updateUser({}));
+  }
+
   return (
     <Page>
-      <Container>
+      <Container style={mobileNav.navVisible ? {transform: 'translateX(0)'} : {transform: 'translateX(-140%)'}}>
         <AvatarContainer>
           <Avatar src={AvatarGraphic}/>
         </AvatarContainer>
@@ -106,6 +121,14 @@ const MobileNav = () => {
           <NavLink>
             <ShoppingCartIcon style={IconStyles}/>
             Zamówienia
+          </NavLink>
+          <NavLink>
+            <EqualizerIcon style={IconStyles}/>
+            Statystyki
+          </NavLink>
+          <NavLink>
+            <LogoutIcon style={IconStyles}/>
+            Wyloguj
           </NavLink>
         </NavLinksContainer>
       </Container>
