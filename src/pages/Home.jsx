@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../redux/userSlice";
+import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
 
@@ -112,7 +111,6 @@ const Home = () => {
   const dayOfMonth = new Date().getDate();
   const mobileNav = useSelector((state) => state.mobileNav);  
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();  
   const auth = useSelector((state) => state.auth); 
 
   if(!auth.confirmed){

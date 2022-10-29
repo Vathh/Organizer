@@ -154,6 +154,7 @@ const Login = () => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let navigate = useNavigate();  
+  const user = useSelector((state) => state.user)
 
   // //#region FETCHSERVICE
   // const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
@@ -203,7 +204,6 @@ const Login = () => {
       dispatch(updateError());
     }    
   }
-  
 
   return (
     <Container>

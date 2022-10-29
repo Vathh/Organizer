@@ -7,8 +7,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/userSlice';
+import { changeNavVisibility, setNavVisibility } from '../redux/mobileNavSlice';
 
 //#region STYLES
 const Page = styled.div`
@@ -98,9 +99,11 @@ const IconStyles = {
 const MobileNav = () => {
 
   const mobileNav = useSelector((state) => state.mobileNav);
-  
-  const handleLogoutBtn = () => {    
-    dispatch(updateUser({}));
+  const dispatch = useDispatch();
+
+  const handleLogoutBtn = () => {   
+    dispatch(updateUser({name: "", jwtKey: ""}));
+    dispatch(setNavVisibility({isVisible: false}));
   }
 
   return (
@@ -126,7 +129,7 @@ const MobileNav = () => {
             <EqualizerIcon style={IconStyles}/>
             Statystyki
           </NavLink>
-          <NavLink>
+          <NavLink onClick={handleLogoutBtn} to='/'>
             <LogoutIcon style={IconStyles}/>
             Wyloguj
           </NavLink>

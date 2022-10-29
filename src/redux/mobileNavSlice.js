@@ -8,9 +8,12 @@ export const mobileNavSlice = createSlice({
   reducers:{
     changeNavVisibility: (state) => {
       state.navVisible = !state.navVisible;
+    },
+    setNavVisibility: (state, action) => {
+      state.navVisible = action.payload.isVisible;
     }  
   }
 })
 
-export const { changeNavVisibility } = mobileNavSlice.actions;
+export const { changeNavVisibility, setNavVisibility } = mobileNavSlice.actions;
 export default mobileNavSlice.reducer;
