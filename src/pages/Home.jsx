@@ -27,7 +27,6 @@ const HomeContainer = styled.div`
   padding-bottom: 50px;
   background: #35065e;
   background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
-  z-index: 1;
   transition: all .5s;
 `
 
