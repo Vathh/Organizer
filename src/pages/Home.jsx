@@ -3,7 +3,6 @@ import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
 
 import MobileNavBtn from "../components/MobileNavBtn";
-import MobileNav from "../components/MobileNav";
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
@@ -15,6 +14,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;  
   overflow-x: hidden;
+  z-index: 0;
 `
 
 const HomeContainer = styled.div`
@@ -117,7 +117,7 @@ const Home = () => {
   }
   return (
     <Container>
-      <MobileNav />
+      {/* <MobileNav /> */}
       <HomeContainer 
         style={mobileNav.navVisible 
         ? StylesForVisibleNav 

@@ -9,7 +9,7 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/userSlice';
-import { changeNavVisibility, setNavVisibility } from '../redux/mobileNavSlice';
+import { setNavVisibility } from '../redux/mobileNavSlice';
 
 //#region STYLES
 const Page = styled.div`
@@ -21,7 +21,6 @@ const Page = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  z-index: -1;
   background: #251B37;
 `
 
@@ -114,7 +113,7 @@ const MobileNav = () => {
         </AvatarContainer>
         <UserName>Arek</UserName>
         <NavLinksContainer>
-          <NavLink>
+          <NavLink to="/jobs">
             <DirectionsCarIcon style={IconStyles}/> Wyjazdy            
           </NavLink>
           <NavLink>
@@ -129,7 +128,7 @@ const MobileNav = () => {
             <EqualizerIcon style={IconStyles}/>
             Statystyki
           </NavLink>
-          <NavLink onClick={handleLogoutBtn} to='/'>
+          <NavLink onClick={handleLogoutBtn} to="/">
             <LogoutIcon style={IconStyles}/>
             Wyloguj
           </NavLink>
