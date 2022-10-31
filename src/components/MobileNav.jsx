@@ -10,9 +10,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../redux/userSlice';
 import { setNavVisibility } from '../redux/mobileNavSlice';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 //#region STYLES
-const Page = styled.div`
+const NavPage = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -102,29 +103,36 @@ const MobileNav = () => {
 
   const handleLogoutBtn = () => {   
     dispatch(updateUser({name: "", jwtKey: ""}));
+    closeMobileNav();
+  }
+
+  const closeMobileNav = () => {
     dispatch(setNavVisibility({isVisible: false}));
   }
 
   return (
-    <Page>
+    <NavPage>
       <Container style={mobileNav.navVisible ? {transform: 'translateX(0)'} : {transform: 'translateX(-140%)'}}>
         <AvatarContainer>
           <Avatar src={AvatarGraphic}/>
         </AvatarContainer>
         <UserName>Arek</UserName>
         <NavLinksContainer>
-          <NavLink to="/jobs">
+          <NavLink to="/home" onClick={closeMobileNav}>
+            <SummarizeIcon style={IconStyles}/> Start            
+          </NavLink>
+          <NavLink to="/jobs" onClick={closeMobileNav}>
             <DirectionsCarIcon style={IconStyles}/> Wyjazdy            
           </NavLink>
-          <NavLink>
+          <NavLink onClick={closeMobileNav}>
             <HomeIcon style={IconStyles}/> 
             Serwisy
           </NavLink>
-          <NavLink>
+          <NavLink onClick={closeMobileNav}> 
             <ShoppingCartIcon style={IconStyles}/>
             Zamówienia
           </NavLink>
-          <NavLink>
+          <NavLink onClick={closeMobileNav}>
             <EqualizerIcon style={IconStyles}/>
             Statystyki
           </NavLink>
@@ -134,7 +142,7 @@ const MobileNav = () => {
           </NavLink>
         </NavLinksContainer>
       </Container>
-    </Page>
+    </NavPage>
 )}
 
 export default MobileNav;

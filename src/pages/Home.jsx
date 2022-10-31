@@ -6,18 +6,11 @@ import MobileNavBtn from "../components/MobileNavBtn";
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
-import AddIcon from '@mui/icons-material/Add';
+
 
 //#region STYLES
-const Container = styled.div`
-  position: relative;
-  height: 100vh;
-  width: 100vw;  
-  overflow-x: hidden;
-  z-index: 0;
-`
 
-const HomeContainer = styled.div`
+const Container = styled.div`
   position: relative;
   min-height: 100vh;
   min-width: 100vw;  
@@ -25,8 +18,6 @@ const HomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;
-  background: #35065e;
-  background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
   transition: all .5s;
 `
 
@@ -78,28 +69,6 @@ const CountersContainer = styled.div`
   color: #fff;
 `
 
-const AddTaskBtn = styled.div`
-  position: absolute;
-  bottom: 65px;
-  right: 35px;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background: #35065e;
-  background: linear-gradient(60deg, #2424ffdf 0%, #8818ff 65%, #2424ffdf 100%);
-  box-shadow: 0 0 10px black;
-  z-index: 100;
-
-  svg{
-    height: 25px;
-    width: 25px;
-    color: #fff;
-  }
-`
-
 //#endregion
 
 
@@ -117,35 +86,26 @@ const Home = () => {
   }
   return (
     <Container>
-      {/* <MobileNav /> */}
-      <HomeContainer 
-        style={mobileNav.navVisible 
-        ? StylesForVisibleNav 
-        : StylesForHiddenNav}>
-          <MobileNavBtn />
-          <Welcome>
-            Cześć, {user.name} !
-          </Welcome>
-          <WelcomeDate>
-            {dayOfWeekToDisplay}, {dayOfMonth}
-          </WelcomeDate>
-          <Browser />
-          <CountersContainer>
-            <Counter/>
-            <Counter/>
-            <Counter/>
-          </CountersContainer>
-          <TasksContainer>
-            <Title>Ostatnio dodane</Title>
-            <TaskIcon />
-            <TaskIcon />
-            <TaskIcon />
-          </TasksContainer>
-      </HomeContainer>
-      <AddTaskBtn>
-        <AddIcon />
-      </AddTaskBtn>
-    </Container>
+        <MobileNavBtn />
+        <Welcome>
+          Cześć, {user.name} !
+        </Welcome>
+        <WelcomeDate>
+          {dayOfWeekToDisplay}, {dayOfMonth}
+        </WelcomeDate>
+        <Browser />
+        <CountersContainer>
+          <Counter/>
+          <Counter/>
+          <Counter/>
+        </CountersContainer>
+        <TasksContainer>
+          <Title>Ostatnio dodane</Title>
+          <TaskIcon />
+          <TaskIcon />
+          <TaskIcon />
+        </TasksContainer>
+    </Container>      
   )
 }
 

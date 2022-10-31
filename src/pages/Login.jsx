@@ -12,8 +12,9 @@ import { updateUser } from '../redux/userSlice'
 
 //#region STYLES
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  position: relative;
+  height: 100%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;

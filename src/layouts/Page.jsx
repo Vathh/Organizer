@@ -1,19 +1,44 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import styled from 'styled-components'
 import MobileNav from '../components/MobileNav'
-import Home from '../pages/Home'
-import JobsList from '../pages/JobsList'
-import Login from '../pages/Login'
+import AddIcon from '@mui/icons-material/Add';
+import ContentContainer from '../components/ContentContainer';
+//#region STYLES
+
+const AddTaskBtn = styled.div`
+  position: absolute;
+  bottom: 65px;
+  right: 35px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #35065e;
+  background: linear-gradient(60deg, #2424ffdf 0%, #8818ff 65%, #2424ffdf 100%);
+  box-shadow: 0 0 10px black;
+  z-index: 100;
+
+  svg{
+    height: 25px;
+    width: 25px;
+    color: #fff;
+  }
+`
+
+
+//#endregion
 
 const Page = () => {  
+
   return (
     <>
-      <MobileNav />
-      <Routes>
-        {/* <Route path='/' exact element={<Login/>}/> */}
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/jobs' element={<JobsList/>}/>
-      </Routes>
+      <MobileNav />      
+      <ContentContainer />      
+      <AddTaskBtn>
+        <AddIcon />
+      </AddTaskBtn>
     </>
   )
 }

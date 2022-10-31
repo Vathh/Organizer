@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import MobileNav from '../components/MobileNav'
 import MobileNavBtn from '../components/MobileNavBtn'
 import TaskIcon from '../components/TaskIcon'
 
@@ -9,15 +8,13 @@ import TaskIcon from '../components/TaskIcon'
   const Container = styled.div`
     position: relative;
     height: 100vh;
-    width: 100vw;  
-    overflow-x: hidden;
-    background: #35065e;
-    background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
+    width: 100vw; 
+    padding-top: 25px;
+    transition: all .5s;
   `
 
   const Title = styled.h1`
     text-align: center;
-    margin-top: 25px;
     font-size: 36px;
     color: #fff;
     font-weight: normal;
@@ -34,9 +31,9 @@ import TaskIcon from '../components/TaskIcon'
 //#endregion
 
 const JobsList = () => {
+
   return (
-    <Container>
-      <MobileNav/>
+    <Container >
       <MobileNavBtn/>
       <Title>Wyjazdy</Title>
       <TasksContainer>
