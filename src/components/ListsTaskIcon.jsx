@@ -5,12 +5,11 @@ import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
-  margin: 10px 0;
   border-radius: 15px;
-  background: rgba(85, 85, 85, 0.335);
+  background: rgba(157, 157, 157,.5);
 `
 const Title = styled.p`
   color: #fff;
@@ -38,7 +37,7 @@ const StateInfoIcon = styled.div`
 `
 //#endregion
 
-const TaskIcon = () => {
+const ListsTaskIcon = () => {
   return (
     <Container>
       <HourglassEmptyIcon style={IconStyles}/>
@@ -48,4 +47,4 @@ const TaskIcon = () => {
   )
 }
 
-export default TaskIcon
+export default ListsTaskIcon

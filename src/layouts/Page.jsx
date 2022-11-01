@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import MobileNav from '../components/MobileNav'
 import AddIcon from '@mui/icons-material/Add';
-import ContentContainer from '../components/ContentContainer';
+import { useSelector } from 'react-redux';
+import MobileNavBtn from '../components/MobileNavBtn';
+import Subpage from './Subpage';
 //#region STYLES
 
 const AddTaskBtn = styled.div`
@@ -27,15 +29,43 @@ const AddTaskBtn = styled.div`
   }
 `
 
+const Container = styled.div`
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;  
+  background: #35065e;
+  background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
+  transition: all .5s;
+`
+
+const StylesForVisibleNav = {
+  left: '70%',
+  transform: 'scale(0.85)',
+  borderRadius: '40px'
+}
+
+const StylesForHiddenNav = {
+  left: '0',
+  transform: 'scale(1.0)',
+  borderRadius: '0px'
+}
+
 
 //#endregion
 
 const Page = () => {  
 
+  const mobileNav = useSelector((state) => state.mobileNav); 
+
   return (
     <>
       <MobileNav />      
-      <ContentContainer />      
+      <Container style={mobileNav.navVisible 
+      ? StylesForVisibleNav 
+      : StylesForHiddenNav}>
+        <MobileNavBtn />
+        <Subpage />
+      </Container>     
       <AddTaskBtn>
         <AddIcon />
       </AddTaskBtn>

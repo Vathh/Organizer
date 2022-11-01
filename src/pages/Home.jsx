@@ -2,9 +2,8 @@ import { useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
 
-import MobileNavBtn from "../components/MobileNavBtn";
 import Browser from "../components/Browser";
-import TaskIcon from "../components/TaskIcon";
+import HomeTaskIcon from "../components/HomeTaskIcon";
 import Counter from "../components/Counter";
 
 
@@ -20,18 +19,6 @@ const Container = styled.div`
   padding-bottom: 50px;
   transition: all .5s;
 `
-
-const StylesForVisibleNav = {
-  left: '70%',
-  transform: 'scale(0.85)',
-  borderRadius: '40px'
-}
-
-const StylesForHiddenNav = {
-  left: '0',
-  transform: 'scale(1.0)',
-  borderRadius: '0px'
-}
 
 const Welcome = styled.span`
   font-size: 16px;
@@ -76,8 +63,7 @@ const Home = () => {
 
   const dayOfWeek = new Date().toLocaleDateString('pl-PL', { weekday: 'long' }); 
   const dayOfWeekToDisplay = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
-  const dayOfMonth = new Date().getDate();
-  const mobileNav = useSelector((state) => state.mobileNav);  
+  const dayOfMonth = new Date().getDate();  
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth); 
 
@@ -86,7 +72,7 @@ const Home = () => {
   }
   return (
     <Container>
-        <MobileNavBtn />
+        
         <Welcome>
           Cześć, {user.name} !
         </Welcome>
@@ -101,9 +87,9 @@ const Home = () => {
         </CountersContainer>
         <TasksContainer>
           <Title>Ostatnio dodane</Title>
-          <TaskIcon />
-          <TaskIcon />
-          <TaskIcon />
+          <HomeTaskIcon/>
+          <HomeTaskIcon/>
+          <HomeTaskIcon/>
         </TasksContainer>
     </Container>      
   )
