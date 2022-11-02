@@ -87,8 +87,7 @@ const Home = () => {
         <TasksContainer>
           <Title>Ostatnio dodane</Title>
           <TaskIcon homeStyles={true}/>
-          {/* <TaskIcon homeStyles={true}/>
-          <TaskIcon homeStyles={true}/> */}
+          {/* <TaskIcon homeStyles={true}/>  */}
         </TasksContainer>
     </Container>      
   )

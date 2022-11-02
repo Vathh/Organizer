@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UpdateIcon from '@mui/icons-material/Update';
 import CheckIcon from '@mui/icons-material/Check';
+import { useRef } from 'react';
 
 //#region STYLES
 const Container = styled.div`
@@ -62,14 +63,18 @@ const Menu = styled.div`
   z-index: 10;
   padding: 10px 0;
   border-radius: 10px;
-  `
+  overflow: hidden;
+  pointer-events: none;
+`
 
 const MenuBtn = styled.div`
   position: relative; 
+  /* top: 100px; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 5px;
+  transition: all .3s;
 `
 
 const MenuBtnIconStyle = {
@@ -83,12 +88,28 @@ const MenuBtnIconStyle = {
 const MenuBtnDescription = styled.span`
   background: rgba(0,0,0,.5);
   padding: 4px 8px;
-  margin-right: 5px;
+  margin-right: 5px;    
 `
 
 //#endregion
 
 const TaskIcon = ({homeStyles}) => {
+
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const testRef = useRef();
+
+  const handleClickOutside = (e) => {
+    if(!testRef.current.contains(e.target)){
+      console.log("ciasto")
+    }
+  }
+  
+
+  const handleMenuVisibility = () => {
+    setIsMenuVisible(!isMenuVisible);
+    document.addEventListener("click", handleClickOutside);
+    document.removeEventListener("click", handleClickOutside, true);
+  }  
 
 
 
@@ -98,13 +119,13 @@ const TaskIcon = ({homeStyles}) => {
       <HourglassEmptyIcon style={IconStyles}/>
       <Title>Naprawa bizhuba c253</Title>
       <StateInfoIcon />
-      <MoreVertIcon style={MoreButtonStyles}/>
-      <Menu >
-        <MenuBtn>
+      <MoreVertIcon style={MoreButtonStyles} onClick={handleMenuVisibility}/>
+      <Menu ref={testRef}>
+        <MenuBtn style={isMenuVisible ? {top: '0', pointerEvents: 'unset'} : {top: '100px', pointerEvents: 'none'}}>
           <MenuBtnDescription>Aktualizuj</MenuBtnDescription>
           <UpdateIcon style={MenuBtnIconStyle}/>
         </MenuBtn>
-        <MenuBtn>
+        <MenuBtn style={isMenuVisible ? {top: '0'} : {top: '100px'}}>
           <MenuBtnDescription>Zamknij</MenuBtnDescription>
           <CheckIcon style={MenuBtnIconStyle}/>
         </MenuBtn>
