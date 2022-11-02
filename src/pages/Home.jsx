@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
 
 import Browser from "../components/Browser";
-import HomeTaskIcon from "../components/HomeTaskIcon";
+import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
 
 
@@ -17,7 +17,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 50px;
-  transition: all .5s;
 `
 
 const Welcome = styled.span`
@@ -87,9 +86,9 @@ const Home = () => {
         </CountersContainer>
         <TasksContainer>
           <Title>Ostatnio dodane</Title>
-          <HomeTaskIcon/>
-          <HomeTaskIcon/>
-          <HomeTaskIcon/>
+          <TaskIcon homeStyles={true}/>
+          <TaskIcon homeStyles={true}/>
+          <TaskIcon homeStyles={true}/>
         </TasksContainer>
     </Container>      
   )

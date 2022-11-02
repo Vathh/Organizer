@@ -1,15 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  width: 90%;
   display: flex;
   align-items: center;
   border-radius: 15px;
-  background: rgba(157, 157, 157,.5);
 `
 const Title = styled.p`
   color: #fff;
@@ -35,16 +34,41 @@ const StateInfoIcon = styled.div`
   background: #ffe100;
   border-radius: 50%;
 `
+
+const ListStyles = {
+  width: '90%',
+  background: 'rgba(157,157,157,.2)',
+  margin: '0 0 15px 0'
+}
+
+const HomeStyles = {
+  width: '100%',
+  background: 'rgba(85,85,85,.335',
+  margin: '10px 0'
+}
+
+const ActionsButton = styled.div`
+  
+`
+
+const MoreButtonStyles = {
+  position: 'absolute',
+  marginLeft: '15px',
+  borderRadius: "50%",
+  padding: '2px'
+}
 //#endregion
 
-const ListsTaskIcon = () => {
+const TaskIcon = ({homeStyles}) => {
   return (
-    <Container>
+    <Container style={homeStyles === true ? 
+    HomeStyles : ListStyles}>
       <HourglassEmptyIcon style={IconStyles}/>
       <Title>Naprawa bizhuba c253</Title>
       <StateInfoIcon />
+      <MoreVertIcon style={MoreButtonStyles}/>
     </Container>
   )
 }
 
-export default ListsTaskIcon
+export default TaskIcon

@@ -124,15 +124,15 @@ const MobileNav = () => {
           <NavLink to="/jobs" onClick={closeMobileNav}>
             <DirectionsCarIcon style={IconStyles}/> Wyjazdy            
           </NavLink>
-          <NavLink onClick={closeMobileNav}>
+          <NavLink to="/services" onClick={closeMobileNav}>
             <HomeIcon style={IconStyles}/> 
             Serwisy
           </NavLink>
-          <NavLink onClick={closeMobileNav}> 
+          <NavLink to="/orders" onClick={closeMobileNav}> 
             <ShoppingCartIcon style={IconStyles}/>
             Zamówienia
           </NavLink>
-          <NavLink onClick={closeMobileNav}>
+          <NavLink to="/stats" onClick={closeMobileNav}>
             <EqualizerIcon style={IconStyles}/>
             Statystyki
           </NavLink>

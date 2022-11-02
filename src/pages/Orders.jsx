@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ListsTaskIcon from '../components/ListsTaskIcon'
+import TaskIcon from '../components/TaskIcon'
 
 //#region STYLES
 
@@ -9,7 +9,6 @@ import ListsTaskIcon from '../components/ListsTaskIcon'
     height: 100vh;
     width: 100vw; 
     padding-top: 25px;
-    transition: all .5s;
   `
 
   const Title = styled.h1`
@@ -22,15 +21,17 @@ import ListsTaskIcon from '../components/ListsTaskIcon'
 
   const TasksContainer = styled.div`
     position: relative;
+    max-height: 660px;
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 0 5px;
     /* border-radius: 20px; */
     color: #fff;
     background-color: rgba(0,0,0,.4);
+    overflow-y: scroll;
   `
 
   const Stages = styled.div`
@@ -57,7 +58,7 @@ import ListsTaskIcon from '../components/ListsTaskIcon'
 
 //#endregion
 
-const JobsList = () => {
+const Orders = () => {
 
   const [chosenStage, setChosenStage] = useState(0);
 
@@ -75,20 +76,28 @@ const JobsList = () => {
 
   return (
     <Container >
-      <Title>Wyjazdy</Title>
+      <Title>Zamówienia</Title>
       <Stages>
         <StageTitle style={handleStageStyle(0)} data-nr={0} onClick={handleStageClick}>Oczekujące</StageTitle>
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
         <StageTitle style={handleStageStyle(2)} data-nr={2} onClick={handleStageClick}>Wydanie</StageTitle>
       </Stages>
       <TasksContainer>
-        <ListsTaskIcon/>
-        <ListsTaskIcon/>
-        <ListsTaskIcon/>
-        <ListsTaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
+        <TaskIcon/>
       </TasksContainer>
     </Container>
   )
 }
 
-export default JobsList
+export default Orders
