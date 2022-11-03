@@ -112,10 +112,9 @@ const TaskIcon = ({homeStyles}) => {
   },[]);
 
   const showMenu = () => {
-    if(!isMenuVisible){
-      setIsMenuVisible(true);
+      setIsMenuVisible(!isMenuVisible);
       console.log("ciasto")
-    }
+    
     console.log(isMenuVisible);
   }
   
