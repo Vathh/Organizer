@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -96,22 +96,29 @@ const MenuBtnDescription = styled.span`
 const TaskIcon = ({homeStyles}) => {
 
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const testRef = useRef();
+  const testRef = useRef();  
+  const ciastoRef = useRef();
 
-  const handleClickOutside = (e) => {
-    if(!testRef.current.contains(e.target)){
+  const handleClickOutside = e => {
+    if (!testRef.current.contains(e.target) || ciastoRef.current.contains(e.target)) {
+      setIsMenuVisible(false);
+    }
+  };
+
+  useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      console.log("test")
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+  },[]);
+
+  const showMenu = () => {
+    if(!isMenuVisible){
+      setIsMenuVisible(true);
       console.log("ciasto")
     }
+    console.log(isMenuVisible);
   }
   
-
-  const handleMenuVisibility = () => {
-    setIsMenuVisible(!isMenuVisible);
-    document.addEventListener("click", handleClickOutside);
-    document.removeEventListener("click", handleClickOutside, true);
-  }  
-
-
 
   return (
     <Container style={homeStyles === true ? 
@@ -119,13 +126,13 @@ const TaskIcon = ({homeStyles}) => {
       <HourglassEmptyIcon style={IconStyles}/>
       <Title>Naprawa bizhuba c253</Title>
       <StateInfoIcon />
-      <MoreVertIcon style={MoreButtonStyles} onClick={handleMenuVisibility}/>
-      <Menu ref={testRef}>
-        <MenuBtn style={isMenuVisible ? {top: '0', pointerEvents: 'unset'} : {top: '100px', pointerEvents: 'none'}}>
+      <MoreVertIcon style={MoreButtonStyles} onClick={showMenu} ref={ciastoRef}/>
+      <Menu ref={testRef} >
+        <MenuBtn style={isMenuVisible ? {top: '0', pointerEvents: 'auto'} : {top: '100px', pointerEvents: 'none'}}>
           <MenuBtnDescription>Aktualizuj</MenuBtnDescription>
           <UpdateIcon style={MenuBtnIconStyle}/>
         </MenuBtn>
-        <MenuBtn style={isMenuVisible ? {top: '0'} : {top: '100px'}}>
+        <MenuBtn style={isMenuVisible ? {top: '0', pointerEvents: 'auto'} : {top: '100px', pointerEvents: 'none'}}>
           <MenuBtnDescription>Zamknij</MenuBtnDescription>
           <CheckIcon style={MenuBtnIconStyle}/>
         </MenuBtn>
