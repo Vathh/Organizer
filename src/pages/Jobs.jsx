@@ -6,9 +6,10 @@ import TaskIcon from '../components/TaskIcon'
 
   const Container = styled.div`
     position: relative;
-    height: 100vh;
+    height: 100%;
     width: 100vw; 
     padding-top: 25px;
+    padding-bottom: 100px;
   `
 
   const Title = styled.h1`
@@ -28,10 +29,8 @@ import TaskIcon from '../components/TaskIcon'
     align-items: center;
     margin: 0 auto;
     padding: 20px 0 5px;
-    /* border-radius: 20px; */
     color: #fff;
     background-color: rgba(0,0,0,.4);
-    overflow-y: scroll;
   `
 
   const Stages = styled.div`
@@ -82,10 +81,6 @@ const Jobs = () => {
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
       </Stages>
       <TasksContainer>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>

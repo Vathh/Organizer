@@ -13,13 +13,13 @@ import { updateUser } from '../redux/userSlice'
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  height: inherit;
+  height: auto;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 0px;
+  padding: 30px 0px 0px;
   background: #35065e;
   background: linear-gradient(60deg, rgba(53,6,94,1) 0%, rgba(105,28,94,1) 65%, rgba(53,6,94,1) 100%);
 `
@@ -41,6 +41,7 @@ const LoginPannel = styled.form`
   background-color: rgba(0,0,0,.5);
   color: white;
   border-radius: 15px;
+  margin-bottom: 200px;
 `
 
 const FormInput = styled.div`

@@ -8,9 +8,9 @@ import Subpage from './Subpage';
 //#region STYLES
 
 const AddTaskBtn = styled.div`
-  position: absolute;
-  bottom: 65px;
-  right: 35px;
+  position: fixed;
+  bottom: 45px;
+  right: 25px;
   height: 50px;
   width: 50px;
   display: flex;

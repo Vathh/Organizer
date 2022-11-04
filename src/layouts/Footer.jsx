@@ -4,7 +4,7 @@ import styled from 'styled-components'
 //#region STYLES
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   bottom: 0;
   width: 100%;  

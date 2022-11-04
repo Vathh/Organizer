@@ -80,13 +80,13 @@ const MenuBtn = styled.div`
 const MenuBtnIconStyle = {
   width: '35px',
   height: '35px',
-  background: 'rgba(0,0,0,.5)',
+  background: 'rgba(0,0,0,.7)',
   borderRadius: '50%',
   padding: '5px'
 }
 
 const MenuBtnDescription = styled.span`
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,.7);
   padding: 4px 8px;
   margin-right: 5px;    
 `
@@ -100,7 +100,7 @@ const TaskIcon = ({homeStyles}) => {
   const ciastoRef = useRef();
 
   const handleClickOutside = e => {
-    if (!testRef.current.contains(e.target) || ciastoRef.current.contains(e.target)) {
+    if (!testRef.current.contains(e.target) && !ciastoRef.current.contains(e.target)) {
       setIsMenuVisible(false);
     }
   };
@@ -112,15 +112,14 @@ const TaskIcon = ({homeStyles}) => {
   },[]);
 
   const showMenu = () => {
-      setIsMenuVisible(!isMenuVisible);
-      console.log("ciasto")
-    
-    console.log(isMenuVisible);
+    setIsMenuVisible(!isMenuVisible);
   }
+
+  // console.log(testRef.current.offsetHeight)
   
 
   return (
-    <Container style={homeStyles === true ? 
+    <Container style={homeStyles ? 
     HomeStyles : ListStyles}>
       <HourglassEmptyIcon style={IconStyles}/>
       <Title>Naprawa bizhuba c253</Title>
