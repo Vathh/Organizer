@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
 
 //#region STYLES
@@ -44,6 +45,7 @@ import TaskIcon from '../components/TaskIcon'
     padding: 10px 15px;    
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    transition: all .3s;
   `
 
   const VisibleStageStyles = {
@@ -76,6 +78,7 @@ const Jobs = () => {
   return (
     <Container >
       <Title>Wyjazdy</Title>
+      <Browser />
       <Stages>
         <StageTitle style={handleStageStyle(0)} data-nr={0} onClick={handleStageClick}>Oczekujące</StageTitle>
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>

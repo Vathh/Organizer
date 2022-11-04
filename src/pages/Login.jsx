@@ -13,7 +13,7 @@ import { updateUser } from '../redux/userSlice'
 //#region STYLES
 const Container = styled.div`
   position: relative;
-  height: auto;
+  min-height: 100vh;
   width: 100%;
   position: relative;
   display: flex;

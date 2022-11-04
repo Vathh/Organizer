@@ -28,6 +28,7 @@ const WelcomeDate = styled.span`
   margin-top: 10px;
   font-size: 22px;
   color: #fff;
+  margin-bottom: 20px;
 `
 
 const TasksContainer = styled.div`
@@ -51,7 +52,7 @@ const CountersContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 50px;
+  margin-top: 25px;
   color: #fff;
 `
 

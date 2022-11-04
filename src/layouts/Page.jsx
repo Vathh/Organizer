@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
 import MobileNavBtn from '../components/MobileNavBtn';
 import Subpage from './Subpage';
+import { useNavigate } from 'react-router-dom';
 //#region STYLES
 
 const AddTaskBtn = styled.div`
@@ -56,6 +57,13 @@ const StylesForHiddenNav = {
 const Page = () => {  
 
   const mobileNav = useSelector((state) => state.mobileNav); 
+  let navigate = useNavigate();
+
+  const handleAddTaskBtn = () => {
+    navigate('/addTask');
+  }
+  
+  console.log(window.location.pathname)
 
   return (
     <>
@@ -66,7 +74,9 @@ const Page = () => {
         <MobileNavBtn />
         <Subpage />
       </Container>     
-      <AddTaskBtn>
+      <AddTaskBtn onClick={handleAddTaskBtn} 
+      style={window.location.pathname === '/addTask' ? 
+      {display: 'none'} : {display: 'flex'}}>
         <AddIcon />
       </AddTaskBtn>
     </>
