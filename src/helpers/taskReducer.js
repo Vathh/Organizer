@@ -1,4 +1,20 @@
-export const ADD_TASK_FORM_STATE = {
+export const ADD_JOB_FORM_STATE = {
+  priority : 1,
+  description : "",
+  place : "",
+  object : "",
+  additionalInfo : ""
+};
+
+export const ADD_SERVICE_FORM_STATE = {
+  priority : 1,
+  description : "",
+  object : "",
+  serial: "",
+  additionalInfo : ""
+};
+
+export const ADD_ORDER_FORM_STATE = {
   priority : 1,
   description : "",
   place : "",

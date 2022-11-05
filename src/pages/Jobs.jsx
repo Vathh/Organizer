@@ -10,7 +10,6 @@ import TaskIcon from '../components/TaskIcon'
     height: 100%;
     width: 100vw; 
     padding-top: 25px;
-    padding-bottom: 100px;
   `
 
   const Title = styled.h1`
@@ -57,6 +56,30 @@ import TaskIcon from '../components/TaskIcon'
     color: '#aeaeae'
   }
 
+  const SortBy = styled.div`
+    width: 80%;
+    margin: 20px auto 0;
+    text-align: end;
+  `
+
+  const SortByTitle = styled.span`
+    color: #fff;
+    margin-right: 20px;
+  `
+
+  const SortBySelect = styled.select` 
+    color: #fff;
+    background: #370D38;
+    padding: 4px;
+    border: 2px solid transparent;
+    outline: none;
+    transition: border .3s;
+
+    :focus{
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+  `
+
 //#endregion
 
 const Jobs = () => {
@@ -93,6 +116,13 @@ const Jobs = () => {
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
       </TasksContainer>
+      <SortBy>
+        <SortByTitle>Sortuj</SortByTitle>
+        <SortBySelect>
+          <option>Od najnowszych</option>
+          <option>Od najstarszych</option>
+        </SortBySelect>
+      </SortBy>
     </Container>
   )
 }

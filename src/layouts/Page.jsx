@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import MobileNav from '../components/MobileNav'
 import AddIcon from '@mui/icons-material/Add';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MobileNavBtn from '../components/MobileNavBtn';
 import Subpage from './Subpage';
 import { useNavigate } from 'react-router-dom';
+import { setNavVisibility } from '../redux/mobileNavSlice';
 //#region STYLES
 
 const AddTaskBtn = styled.div`
@@ -58,9 +59,11 @@ const Page = () => {
 
   const mobileNav = useSelector((state) => state.mobileNav); 
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddTaskBtn = () => {
     navigate('/addTask');
+    dispatch(setNavVisibility({isVisible: false}));
   }  
 
   return (
