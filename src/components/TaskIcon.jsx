@@ -107,15 +107,12 @@ const TaskIcon = ({homeStyles}) => {
 
   useEffect(() => {
       document.addEventListener('mousedown', handleClickOutside);
-      console.log("test")
       return () => document.removeEventListener('mousedown', handleClickOutside);
   },[]);
 
   const showMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   }
-
-  // console.log(testRef.current.offsetHeight)
   
 
   return (

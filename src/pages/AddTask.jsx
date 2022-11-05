@@ -1,35 +1,39 @@
 import React from 'react'
+import { useReducer } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { ADD_TASK_FORM_STATE, taskReducer } from '../helpers/taskReducer'
 
 //#region STYLES
 
 const Container = styled.div`
   position: relative;
-  height: 100%;
+  height: 100vh;
   width: 100vw; 
-  padding-top: 25px;
-  padding-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 `
 
 const LoginPannel = styled.form`
-  width: 300px;
   position: relative;
-  top: 50px;
+  height: fit-content;
+  top: -30px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  margin: auto 20px;
   padding: 15px;
   background-color: rgba(0,0,0,.5);
   color: white;
   border-radius: 15px;
-  margin-bottom: 200px;
 `
 
 const FormInput = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  margin: 30px 20px; 
+  margin: 25px 20px; 
 `
 const Label = styled.label`
   position: absolute;
@@ -52,6 +56,17 @@ const Label = styled.label`
     background: rgba(105,28,94,1);
     z-index: -1;
   }
+`
+
+const SelectLabel = styled.label`
+  position: relative;
+  top: 8px;
+  left: 10px;
+  font-size: 18px;
+  padding: 0 2px;
+  letter-spacing: 1px;
+  z-index: 1;
+  pointer-events: none;
 `
 
 const Input = styled.input`
@@ -118,6 +133,26 @@ const SubmitBtn = styled.button`
   }
 `
 
+const Select = styled.select`
+  background: rgba(105,28,94,1);
+  color: white;
+  padding: 4px;
+  width: 60px;
+  border: 2px solid #3d1a48; 
+  border-radius: 5px;
+  font-size: 24px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  font-weight: bold;
+  transition: transform .3s;
+
+  :focus{
+    transform: scale(1.1);
+  }
+`
+
 const ErrorMsg = styled.span`
   position: absolute;
   text-align: center;
@@ -129,21 +164,54 @@ const ErrorMsg = styled.span`
 //#endregion
 
 const AddTask = () => {
+
+  const [formState, formDispatch] = useReducer(taskReducer,ADD_TASK_FORM_STATE);
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    formDispatch({
+      type:"CHANGE_INPUT", 
+      payload:{name: e.target.name, value: e.target.value}
+    });
+  }; 
+
+  console.log(formState);
+
   return (
     <Container>
       <LoginPannel>
-          <FormInput>
-            <Input type="text" placeholder='Wpisz swój login' name={"login"} />
-            <Label >Login</Label>
-          </FormInput>
+        <FormInput>
+          <Input type="text" placeholder='Opis wyjazdu' name={"description"} onChange={handleInputChange}/>
+          <Label>Opis</Label>
+        </FormInput>
 
-          <FormInput>
-            <Input type="text" placeholder='Wpisz hasło' name={"password"}/>
-            <Label>Hasło</Label>
-          </FormInput>
-          <SubmitBtn >Zaloguj się</SubmitBtn>
-          <ErrorMsg>Coś poszło nie tak.. <br/>Spróbuj ponownie</ErrorMsg>
-        </LoginPannel>
+        <FormInput>
+          <Input type="text" placeholder='Miejsce wykonania' name={"place"} onChange={handleInputChange}/>
+          <Label>Miejsce</Label>
+        </FormInput>
+
+        <FormInput>
+          <Input type="text" placeholder='Przedmiot interwencji' name={"object"} onChange={handleInputChange}/>
+          <Label>Urządzenie</Label>
+        </FormInput>
+
+        <FormInput>
+          <Input type="text" placeholder='Dodatkowe informacje' name={"additionalInfo"} onChange={handleInputChange}/>
+          <Label>Uwagi</Label>
+        </FormInput>
+
+        <FormInput style={{justifyContent: 'space-around'}}>
+          <SelectLabel >Priorytet wykonania</SelectLabel>
+          <Select name="priority" onChange={handleInputChange}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </Select>
+        </FormInput>
+
+        <SubmitBtn>Dodaj</SubmitBtn>
+        {/* <ErrorMsg>Coś poszło nie tak.. <br/>Spróbuj ponownie</ErrorMsg> */}
+      </LoginPannel>
       
     </Container>
   )

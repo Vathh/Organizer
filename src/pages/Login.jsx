@@ -213,7 +213,7 @@ const Login = () => {
         <LoginPannel>
           <FormInput>
             <Input type="text" placeholder='Wpisz swój login' onChange={handleInputChange} name={"login"} />
-            <Label >Login</Label>
+            <Label>Login</Label>
           </FormInput>
 
           <FormInput>

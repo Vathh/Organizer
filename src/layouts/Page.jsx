@@ -61,9 +61,7 @@ const Page = () => {
 
   const handleAddTaskBtn = () => {
     navigate('/addTask');
-  }
-  
-  console.log(window.location.pathname)
+  }  
 
   return (
     <>
