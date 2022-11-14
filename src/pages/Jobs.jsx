@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
@@ -80,6 +81,8 @@ import TaskIcon from '../components/TaskIcon'
     }
   `
 
+  const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
+
 //#endregion
 
 const Jobs = () => {
@@ -95,8 +98,7 @@ const Jobs = () => {
   
   const handleStageClick = (e) => {
     setChosenStage(parseInt(e.target.getAttribute("data-nr")));
-  }
-  
+  }  
 
   return (
     <Container >
@@ -106,7 +108,7 @@ const Jobs = () => {
         <StageTitle style={handleStageStyle(0)} data-nr={0} onClick={handleStageClick}>Oczekujące</StageTitle>
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
       </Stages>
-      <TasksContainer>
+      <TasksContainer >
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
