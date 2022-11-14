@@ -171,7 +171,7 @@ const AddOrderPannel = () => {
   return (
     <JobPannel>
         <FormInput>
-          <Input type="text" placeholder='Opis wyjazdu' name={"description"} onChange={handleInputChange}/>
+          <Input type="text" placeholder='Opis zamówienia' name={"description"} onChange={handleInputChange}/>
           <Label>Opis</Label>
         </FormInput>
 
