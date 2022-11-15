@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/Organizer/static/js/main.e94c7516.chunk.js",
-    "main.js.map": "/Organizer/static/js/main.e94c7516.chunk.js.map",
+    "main.js": "/Organizer/static/js/main.4fefed71.chunk.js",
+    "main.js.map": "/Organizer/static/js/main.4fefed71.chunk.js.map",
     "runtime-main.js": "/Organizer/static/js/runtime-main.e533590d.js",
     "runtime-main.js.map": "/Organizer/static/js/runtime-main.e533590d.js.map",
-    "static/js/2.04ad3d01.chunk.js": "/Organizer/static/js/2.04ad3d01.chunk.js",
-    "static/js/2.04ad3d01.chunk.js.map": "/Organizer/static/js/2.04ad3d01.chunk.js.map",
+    "static/js/2.5aa453d9.chunk.js": "/Organizer/static/js/2.5aa453d9.chunk.js",
+    "static/js/2.5aa453d9.chunk.js.map": "/Organizer/static/js/2.5aa453d9.chunk.js.map",
     "index.html": "/Organizer/index.html",
-    "static/js/2.04ad3d01.chunk.js.LICENSE.txt": "/Organizer/static/js/2.04ad3d01.chunk.js.LICENSE.txt",
+    "static/js/2.5aa453d9.chunk.js.LICENSE.txt": "/Organizer/static/js/2.5aa453d9.chunk.js.LICENSE.txt",
     "static/media/OGARNIZER.efb692e7.svg": "/Organizer/static/media/OGARNIZER.efb692e7.svg",
     "static/media/avatar.980b1aa9.jpg": "/Organizer/static/media/avatar.980b1aa9.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e533590d.js",
-    "static/js/2.04ad3d01.chunk.js",
-    "static/js/main.e94c7516.chunk.js"
+    "static/js/2.5aa453d9.chunk.js",
+    "static/js/main.4fefed71.chunk.js"
   ]
 }
