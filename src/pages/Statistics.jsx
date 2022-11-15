@@ -18,7 +18,7 @@ const PageTitle = styled.h1`
     font-size: 36px;
     color: #fff;
     font-weight: normal;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
   `
 
 const TaskContainer = styled.div`

@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 //#region STYLES
 
@@ -57,10 +59,15 @@ import TaskIcon from '../components/TaskIcon'
     color: '#aeaeae'
   }
 
-  const SortBy = styled.div`
+  const PageSettings = styled.div`
     width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 20px auto 0;
-    text-align: end;
+  `
+
+  const SortBy = styled.div`
   `
 
   const SortByTitle = styled.span`
@@ -80,6 +87,22 @@ import TaskIcon from '../components/TaskIcon'
     border: 2px solid rgba(255, 255, 255, 0.2);
     }
   `
+  
+  const PageChoice = styled.div`
+    color: #fff;
+    display: flex;
+  `
+
+  const CurrentPage = styled.span`
+    
+  `
+
+  const ChangePage = styled.div`
+    
+  `
+
+
+
 
   const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
 
@@ -118,13 +141,20 @@ const Jobs = () => {
         <TaskIcon homeStyles={false}/>
         <TaskIcon homeStyles={false}/>
       </TasksContainer>
-      <SortBy>
-        <SortByTitle>Sortuj</SortByTitle>
-        <SortBySelect>
-          <option>Od najnowszych</option>
-          <option>Od najstarszych</option>
-        </SortBySelect>
-      </SortBy>
+      <PageSettings>
+        <PageChoice>
+          <ChangePage> &#171; </ChangePage>
+          <CurrentPage>1 z 8</CurrentPage>
+          <ChangePage> &#187; </ChangePage>
+        </PageChoice>
+        <SortBy>
+          <SortByTitle>Sortuj</SortByTitle>
+          <SortBySelect>
+            <option>Od najnowszych</option>
+            <option>Od najstarszych</option>
+          </SortBySelect>
+        </SortBy>
+      </PageSettings>
     </Container>
   )
 }

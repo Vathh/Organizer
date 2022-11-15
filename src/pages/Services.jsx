@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
 
 //#region STYLES
@@ -22,17 +23,14 @@ import TaskIcon from '../components/TaskIcon'
 
   const TasksContainer = styled.div`
     position: relative;
-    max-height: 660px;
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
     padding: 20px 0 5px;
-    /* border-radius: 20px; */
     color: #fff;
     background-color: rgba(0,0,0,.4);
-    overflow-y: scroll;
   `
 
   const Stages = styled.div`
@@ -57,6 +55,32 @@ import TaskIcon from '../components/TaskIcon'
     color: '#aeaeae'
   }
 
+  const SortBy = styled.div`
+    width: 80%;
+    margin: 20px auto 0;
+    text-align: end;
+  `
+
+  const SortByTitle = styled.span`
+    color: #fff;
+    margin-right: 20px;
+  `
+
+  const SortBySelect = styled.select` 
+    color: #fff;
+    background: #370D38;
+    padding: 4px;
+    border: 2px solid transparent;
+    outline: none;
+    transition: border .3s;
+
+    :focus{
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+  `
+
+  const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
+
 //#endregion
 
 const Services = () => {
@@ -78,6 +102,7 @@ const Services = () => {
   return (
     <Container >
       <Title>Serwisy</Title>
+      <Browser />
       <Stages>
         <StageTitle style={handleStageStyle(0)} data-nr={0} onClick={handleStageClick}>Oczekujące</StageTitle>
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
@@ -91,12 +116,14 @@ const Services = () => {
         <TaskIcon/>
         <TaskIcon/>
         <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
       </TasksContainer>
+      <SortBy>
+        <SortByTitle>Sortuj</SortByTitle>
+        <SortBySelect>
+          <option>Od najnowszych</option>
+          <option>Od najstarszych</option>
+        </SortBySelect>
+      </SortBy>
     </Container>
   )
 }

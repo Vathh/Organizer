@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
+import { useEffect, useRef } from "react";
 
 
 //#region STYLES
@@ -56,6 +57,8 @@ const CountersContainer = styled.div`
   color: #fff;
 `
 
+const numberOfTasksToDisplay = Math.floor((window.innerHeight-497)/69);
+
 //#endregion
 
 
@@ -85,10 +88,13 @@ const Home = () => {
           <Counter/>
           <Counter/>
         </CountersContainer>
-        <TasksContainer>
+        <TasksContainer >
           <Title>Ostatnio dodane</Title>
           <TaskIcon homeStyles={true}/>
-          {/* <TaskIcon homeStyles={true}/>  */}
+          <TaskIcon homeStyles={true}/> 
+          <TaskIcon homeStyles={true}/> 
+          <TaskIcon homeStyles={true}/> 
+          <TaskIcon homeStyles={true}/> 
         </TasksContainer>
     </Container>      
   )
