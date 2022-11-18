@@ -9,6 +9,8 @@ import { users } from '../data'
 import { updateError, updateSuccess } from '../redux/authSlice';
 import { updateUser } from '../redux/userSlice'
 
+import { logIn } from '../services/authenticationService'
+
 
 //#region STYLES
 const Container = styled.div`
@@ -158,6 +160,11 @@ const Login = () => {
   let navigate = useNavigate();  
   const user = useSelector((state) => state.user)
 
+  const testUser = {
+    "Login" : "admin",
+    "Password" : "adminpassword"
+}
+
   // //#region FETCHSERVICE
   // const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
 
@@ -185,26 +192,37 @@ const Login = () => {
   
   const handleLoginBtn = (e) => {
     e.preventDefault();
-    let ciasto;
-    let name = "";
-    let jwtKey = "";
-    if(users.find(user => user.Login === formState.login && user.PasswordHash === formState.password)){
-      ciasto = users.find(x => x.Login === formState.login);
-      name = ciasto.Name;
-      jwtKey = "testJWTkey"
-    }    
 
-    if(name !== ""){
-      dispatch(updateUser({name, jwtKey}));
-      dispatch(updateSuccess());
-      formDispatch({
-        type:"CHANGE_INPUT", 
-        payload:{name: "", value: ""}
-      });
-      navigate('/home');
-    }else{
-      dispatch(updateError());
-    }    
+    logIn(testUser)
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    // let ciasto;
+    // let name = "";
+    // let jwtKey = "";
+    // if(users.find(user => user.Login === formState.login && user.PasswordHash === formState.password)){
+    //   ciasto = users.find(x => x.Login === formState.login);
+    //   name = ciasto.Name;
+    //   jwtKey = "testJWTkey"
+    
+    // }    
+
+    // if(name !== ""){
+    //   dispatch(updateUser({name, jwtKey}));
+    //   dispatch(updateSuccess());
+    //   formDispatch({
+    //     type:"CHANGE_INPUT", 
+    //     payload:{name: "", value: ""}
+    //   });
+    //   navigate('/home');
+    // }else{
+    //   dispatch(updateError());
+    // }    
+
+
   }
 
   return (
