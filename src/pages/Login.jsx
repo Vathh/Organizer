@@ -9,7 +9,7 @@ import { users } from '../data'
 import { updateError, updateSuccess } from '../redux/authSlice';
 import { updateUser } from '../redux/userSlice'
 
-import { logIn } from '../services/authenticationService'
+import logIn from '../services/authenticationService'
 
 
 //#region STYLES

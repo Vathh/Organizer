@@ -7,11 +7,10 @@ const instance = axios.create({
   }
 });
 
-export default {
-  logIn: (user) => 
-    instance({
-      'method': 'GET',
-      'url': '/api/account/login',
-      'data': user
-    })
+export default function logIn (user){
+  instance({
+    'method': 'GET',
+    'url': '/api/account/login',
+    'data': user
+  })
 }
