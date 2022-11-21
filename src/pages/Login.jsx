@@ -193,13 +193,13 @@ const Login = () => {
   const handleLoginBtn = (e) => {
     e.preventDefault();
 
-    logIn(testUser)
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    logIn(testUser);
+      // .then((response) => {
+      //   console.log(response.data)
+      // })
+      // .catch((error) => {
+      //   console.log(error)
+      // })
     // let ciasto;
     // let name = "";
     // let jwtKey = "";
