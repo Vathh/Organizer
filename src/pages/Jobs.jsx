@@ -3,8 +3,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import JOBSSERVICE from '../services/jobsService'
 
 //#region STYLES
 
@@ -101,9 +100,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
     
   `
 
-
-
-
   const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
 
 //#endregion
@@ -111,6 +107,16 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 const Jobs = () => {
 
   const [chosenStage, setChosenStage] = useState(0);
+
+  useEffect(() => {
+    JOBSSERVICE.getAll(numberOfTasksToDisplay, 1, "CreatedDate", "DESC")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [])
 
   const handleStageStyle = (x) => {
     if(chosenStage === x){

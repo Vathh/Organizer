@@ -74,8 +74,7 @@ const Home = () => {
     return <Navigate to='/'/>
   }
   return (
-    <Container>
-        
+    <Container>        
         <Welcome>
           Cześć, {user.name} !
         </Welcome>

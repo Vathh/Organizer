@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { INITIAL_LOGIN_FORM_STATE, loginFormReducer } from '../helpers/loginFormReducer'
 import LogoSvg from '../img/OGARNIZER.svg'
-import { users } from '../data'
 import { updateError, updateSuccess } from '../redux/authSlice';
 import { updateUser } from '../redux/userSlice'
 
-import API from '../services/authenticationService'; 
+import AUTH from '../services/authenticationService'; 
 import JWTManager from '../helpers/JWTManager'
 
 
@@ -190,23 +189,21 @@ const Login = () => {
   const handleLoginBtn = (e) => {
     e.preventDefault();
 
-    API.logIn(formState.login, formState.password)
+    AUTH.logIn(formState.login, formState.password)
       .then((response) => {
-        JWTManager.setToken(response.data);
-        dispatch(updateUser({name}));
+        dispatch(updateUser({name: response.data.name}));
+        JWTManager.setToken(response.data.jwt);
+        dispatch(updateSuccess());
+        formDispatch({
+          type:"CHANGE_INPUT", 
+          payload:{name: "", value: ""}
+        });
+        navigate('/home');
       })
       .catch((error) => {
+        dispatch(updateError());
         console.log(error)
       });
-    // let ciasto;
-    // let name = "";
-    // let jwtKey = "";
-    // if(users.find(user => user.Login === formState.login && user.PasswordHash === formState.password)){
-    //   ciasto = users.find(x => x.Login === formState.login);
-    //   name = ciasto.Name;
-    //   jwtKey = "testJWTkey"
-    
-    // }    
 
     // if(name !== ""){
     //   dispatch(updateUser({name, jwtKey}));

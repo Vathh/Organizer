@@ -99,10 +99,11 @@ const IconStyles = {
 const MobileNav = () => {
 
   const mobileNav = useSelector((state) => state.mobileNav);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLogoutBtn = () => {   
-    dispatch(updateUser({name: "", jwtKey: ""}));
+    dispatch(updateUser({name: ""}));
     closeMobileNav();
   }
 
@@ -116,7 +117,7 @@ const MobileNav = () => {
         <AvatarContainer>
           <Avatar src={AvatarGraphic}/>
         </AvatarContainer>
-        <UserName>Arek</UserName>
+        <UserName>{user.name}</UserName>
         <NavLinksContainer>
           <NavLink to="/home" onClick={closeMobileNav}>
             <SummarizeIcon style={IconStyles}/> Start            
