@@ -3,13 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: "user",
   initialState:{    
-    name: "",
-    jwtKey: ""    
+    name: ""   
   },
   reducers:{
     updateUser: (state, action) => {
       state.name = action.payload.name;
-      state.jwtKey = action.payload.jwtKey;
     }
   }
 })

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 
 const instance = axios.create({
@@ -7,17 +8,26 @@ const instance = axios.create({
   }
 });
 
-export default function logIn (user){
-  instance({
-    method: 'POST',
-    url: '/api/account/login',
-    data : user
-  })
-  .then((response) => {
-    console.log(response.data)
-  })
-  .catch((error) => {
-    console.log(error)
-  });
+export default {  
+  logIn: (login, password) =>
+    instance({
+      method: 'POST',
+      url: '/api/account/login',
+      data : {
+        "Login" : login,
+        "Password" : password
+      }
+    }),
+  stockTimeSeries: (symbol) =>
+    instance({
+        'method':'GET',
+        'url':'/query',
+        'params': {
+            'outputsize':'compact',
+            'datatype':'json',
+            'function':'TIME_SERIES_DAILY_ADJUSTED',
+            'symbol': symbol.toUpperCase()
+        },
+    })
 }
 

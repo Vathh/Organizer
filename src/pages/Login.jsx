@@ -9,7 +9,9 @@ import { users } from '../data'
 import { updateError, updateSuccess } from '../redux/authSlice';
 import { updateUser } from '../redux/userSlice'
 
-import logIn from '../services/authenticationService'
+import API from '../services/authenticationService'; 
+import JWTManager from '../helpers/JWTManager'
+
 
 
 //#region STYLES
@@ -160,11 +162,6 @@ const Login = () => {
   let navigate = useNavigate();  
   const user = useSelector((state) => state.user)
 
-  const testUser = {
-    "Login" : "admin",
-    "Password" : "adminpassword"
-}
-
   // //#region FETCHSERVICE
   // const [fetchState, fetchDispatch] = useReducer(loginPostReducer, INITIAL_LOGIN_FETCH_STATE);
 
@@ -193,13 +190,14 @@ const Login = () => {
   const handleLoginBtn = (e) => {
     e.preventDefault();
 
-    logIn(testUser);
-      // .then((response) => {
-      //   console.log(response.data)
-      // })
-      // .catch((error) => {
-      //   console.log(error)
-      // });
+    API.logIn(formState.login, formState.password)
+      .then((response) => {
+        JWTManager.setToken(response.data);
+        dispatch(updateUser({name}));
+      })
+      .catch((error) => {
+        console.log(error)
+      });
     // let ciasto;
     // let name = "";
     // let jwtKey = "";
