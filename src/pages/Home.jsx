@@ -1,11 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
 
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
-import { useEffect, useRef } from "react";
+import { useEffect, useReducer } from "react";
+import JOBSSERVICE from '../services/jobsService'
+import { REQUEST_TYPES } from '../helpers/requestReducers/actionTypes'
+import { getJobsReducer, INITIAL_GETJOBS_FETCH_STATE } from '../helpers/requestReducers/getJobsReducer'
+import { updateJobs } from "../redux/tasksSlice";
 
 
 //#region STYLES
@@ -69,6 +73,32 @@ const Home = () => {
   const dayOfMonth = new Date().getDate();  
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth); 
+  const dispatch = useDispatch();
+
+  const [jobsState, jobsDispatch] = useReducer(getJobsReducer, INITIAL_GETJOBS_FETCH_STATE);
+
+  async function fetchData() {
+    await JOBSSERVICE.getAll(numberOfTasksToDisplay, 1, "CreatedDate", "DESC")
+      .then((response) => {
+        const jobs = response.data.items.map((task) => {
+          return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+        });
+        dispatch(updateJobs({jobs}))
+        jobsDispatch({type: REQUEST_TYPES.SUCCESS});
+      })
+      .catch((error) => {
+        console.log(error);
+        jobsDispatch({type: REQUEST_TYPES.ERROR});
+      });
+  }
+
+  useEffect(() => {
+    jobsDispatch({type: REQUEST_TYPES.START}); 
+    fetchData();
+    return () => {
+      dispatch(updateJobs({}))
+    }
+  }, [])
 
   if(!auth.confirmed){
     return <Navigate to='/'/>
