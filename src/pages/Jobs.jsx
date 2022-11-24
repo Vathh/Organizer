@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useReducer, useRef, useState } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
+import { getJobsReducer, INITIAL_GETJOBS_FETCH_STATE } from '../helpers/requestReducers/getJobsReducer'
 import JOBSSERVICE from '../services/jobsService'
+import { REQUEST_TYPES } from '../helpers/requestReducers/actionTypes'
 
 //#region STYLES
 
@@ -100,6 +102,10 @@ import JOBSSERVICE from '../services/jobsService'
     
   `
 
+  const NoTasksMessage = styled.span`
+    padding-bottom: 15px;
+  `
+
   const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
 
 //#endregion
@@ -107,15 +113,24 @@ import JOBSSERVICE from '../services/jobsService'
 const Jobs = () => {
 
   const [chosenStage, setChosenStage] = useState(0);
+  const [tasks, setTasks] = useState({});
+  const [jobsState, jobsDispatch] = useReducer(getJobsReducer, INITIAL_GETJOBS_FETCH_STATE);
 
   useEffect(() => {
+    jobsDispatch({type: REQUEST_TYPES.START});
+    console.log(jobsState.success)
     JOBSSERVICE.getAll(numberOfTasksToDisplay, 1, "CreatedDate", "DESC")
       .then((response) => {
-        console.log(response.data);
+        setTasks(response.data.items.map((task) => {
+          return <TaskIcon homeStyles={false} title={task.description}/>
+        }))
+        jobsDispatch({type: REQUEST_TYPES.SUCCESS});
+        console.log(jobsState.success)
       })
       .catch((error) => {
         console.log(error);
-      })
+        jobsDispatch({type: REQUEST_TYPES.ERROR});
+      });
   }, [])
 
   const handleStageStyle = (x) => {
@@ -138,14 +153,7 @@ const Jobs = () => {
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
       </Stages>
       <TasksContainer >
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
-        <TaskIcon homeStyles={false}/>
+        {jobsState === REQUEST_TYPES.SUCCESS ? {tasks} : <NoTasksMessage>Brak zadań</NoTasksMessage>}
       </TasksContainer>
       <PageSettings>
         <PageChoice>

@@ -1,23 +1,25 @@
-export const INITIAL_LOGIN_FETCH_STATE = {
+import { REQUEST_TYPES } from "./actionTypes"
+
+export const INITIAL_GETJOBS_FETCH_STATE = {
   loading: false,
-  error: false,
-  data: {}
+  success: false,
+  error: false
 }
 
-export const loginPostReducer = (state, action) => {
+export const getJobsReducer = (state, action) => {
   switch(action.type){
-    case "FETCH_START":
+    case REQUEST_TYPES.START:
       return{
         ...state,
         loading: true
       }
-    case "FETCH_SUCCESS":
+    case REQUEST_TYPES.SUCCESS:
       return{
         ...state,
         loading: false,
-        data: action.payload
+        success: true
       }
-    case "FETCH_ERROR":
+    case REQUEST_TYPES.ERROR:
       return{
         ...state,
         loading: false,

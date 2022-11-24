@@ -93,7 +93,7 @@ const MenuBtnDescription = styled.span`
 
 //#endregion
 
-const TaskIcon = ({homeStyles}) => {
+const TaskIcon = ({homeStyles, title}) => {
 
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const testRef = useRef();  
@@ -119,7 +119,7 @@ const TaskIcon = ({homeStyles}) => {
     <Container style={homeStyles ? 
     HomeStyles : ListStyles}>
       <HourglassEmptyIcon style={IconStyles}/>
-      <Title>Naprawa bizhuba c253</Title>
+      <Title>{title}</Title>
       <StateInfoIcon />
       <MoreVertIcon style={MoreButtonStyles} onClick={showMenu} ref={ciastoRef}/>
       <Menu ref={testRef} >
