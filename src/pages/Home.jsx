@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom'
 import styled from "styled-components"
@@ -8,8 +9,8 @@ import Counter from "../components/Counter";
 import { useEffect, useReducer } from "react";
 import JOBSSERVICE from '../services/jobsService'
 import { REQUEST_TYPES } from '../helpers/requestReducers/actionTypes'
-import { getJobsReducer, INITIAL_GETJOBS_FETCH_STATE } from '../helpers/requestReducers/getJobsReducer'
 import { updateJobs } from "../redux/tasksSlice";
+import { fetchError, fetchStart, fetchSuccess } from "../redux/fetchTasksSlice";
 
 
 //#region STYLES
@@ -75,28 +76,26 @@ const Home = () => {
   const auth = useSelector((state) => state.auth); 
   const dispatch = useDispatch();
 
-  const [jobsState, jobsDispatch] = useReducer(getJobsReducer, INITIAL_GETJOBS_FETCH_STATE);
-
   async function fetchData() {
     await JOBSSERVICE.getAll(numberOfTasksToDisplay, 1, "CreatedDate", "DESC")
       .then((response) => {
-        const jobs = response.data.items.map((task) => {
-          return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
-        });
-        dispatch(updateJobs({jobs}))
-        jobsDispatch({type: REQUEST_TYPES.SUCCESS});
+        // const jobs = response.data.items.map((task) => {
+        //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+        // });
+        dispatch(updateJobs({jobs: response.data.items}));
+        dispatch(fetchSuccess()); 
       })
       .catch((error) => {
         console.log(error);
-        jobsDispatch({type: REQUEST_TYPES.ERROR});
+        dispatch(fetchError()); 
       });
   }
 
   useEffect(() => {
-    jobsDispatch({type: REQUEST_TYPES.START}); 
+    dispatch(fetchStart()); 
     fetchData();
     return () => {
-      dispatch(updateJobs({}))
+      
     }
   }, [])
 

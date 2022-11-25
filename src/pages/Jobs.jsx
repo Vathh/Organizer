@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useReducer, useRef, useState } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
-import { getJobsReducer, INITIAL_GETJOBS_FETCH_STATE } from '../helpers/requestReducers/getJobsReducer'
 
 import { useSelector } from 'react-redux'
+import TaskIcon from '../components/TaskIcon'
 
 //#region STYLES
 
@@ -112,8 +113,17 @@ import { useSelector } from 'react-redux'
 const Jobs = () => {
 
   const [chosenStage, setChosenStage] = useState(0);
-  const [jobsState, jobsDispatch] = useReducer(getJobsReducer, INITIAL_GETJOBS_FETCH_STATE);
-  const jobs = useSelector((state) => state.tasks.jobs);
+  const jobsState = useSelector((state) => state.fetchTasks)
+  const tasks = useSelector((state) => state.tasks);
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    if(jobsState.confirmed){
+      setJobs(tasks.jobs.map((task) => {
+        return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+      }))
+    }
+  },[jobsState.confirmed])
 
   const handleStageStyle = (x) => {
     if(chosenStage === x){
@@ -126,6 +136,9 @@ const Jobs = () => {
     setChosenStage(parseInt(e.target.getAttribute("data-nr")));
   }  
 
+  console.log(jobs)
+  console.log(jobsState)
+
   return (
     <Container >
       <Title>Wyjazdy</Title>
@@ -135,7 +148,7 @@ const Jobs = () => {
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
       </Stages>
       <TasksContainer >
-        {jobsState.success ? jobs : <NoTasksMessage>Brak zadań</NoTasksMessage>}
+        {jobsState.confirmed ? jobs : <NoTasksMessage>Brak zadań</NoTasksMessage>}
       </TasksContainer>
       <PageSettings>
         <PageChoice>
