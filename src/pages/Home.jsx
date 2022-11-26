@@ -6,12 +6,6 @@ import styled from "styled-components"
 import Browser from "../components/Browser";
 import TaskIcon from "../components/TaskIcon";
 import Counter from "../components/Counter";
-import { useEffect, useReducer } from "react";
-import JOBSSERVICE from '../services/jobsService'
-import { REQUEST_TYPES } from '../helpers/requestReducers/actionTypes'
-import { updateJobs } from "../redux/tasksSlice";
-import { fetchError, fetchStart, fetchSuccess } from "../redux/fetchTasksSlice";
-
 
 //#region STYLES
 
@@ -62,7 +56,9 @@ const CountersContainer = styled.div`
   color: #fff;
 `
 
-const numberOfTasksToDisplay = Math.floor((window.innerHeight-497)/69);
+const numberOfTasksToDisplayHome = Math.floor((window.innerHeight-497)/69);
+
+const numberOfTasksToDisplayList = Math.floor((window.innerHeight-414)/64);
 
 //#endregion
 
@@ -76,28 +72,40 @@ const Home = () => {
   const auth = useSelector((state) => state.auth); 
   const dispatch = useDispatch();
 
-  async function fetchData() {
-    await JOBSSERVICE.getAll(numberOfTasksToDisplay, 1, "CreatedDate", "DESC")
-      .then((response) => {
-        // const jobs = response.data.items.map((task) => {
-        //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
-        // });
-        dispatch(updateJobs({jobs: response.data.items}));
-        dispatch(fetchSuccess()); 
-      })
-      .catch((error) => {
-        console.log(error);
-        dispatch(fetchError()); 
-      });
-  }
+  // async function fetchData() {
+  //   await JOBSSERVICE.getAll(numberOfTasksToDisplayList, 1, "CreatedDate", "DESC")
+  //     .then((response) => {
+  //       // const jobs = response.data.items.map((task) => {
+  //       //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+  //       // });
+  //       dispatch(updateJobs({jobs: response.data.items}));
+  //       dispatch(fetchSuccess()); 
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       dispatch(fetchError()); 
+  //     });
 
-  useEffect(() => {
-    dispatch(fetchStart()); 
-    fetchData();
-    return () => {
-      
-    }
-  }, [])
+  //   await SERVICESSERICE.getAll(numberOfTasksToDisplayList, 1, "CreatedDate", "DESC")
+  //   .then((response) => {
+  //     // const jobs = response.data.items.map((task) => {
+  //     //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+  //     // });
+  //     dispatch(updateServices({services: response.data.items}));
+  //     dispatch(fetchSuccess()); 
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //     dispatch(fetchError()); 
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   dispatch(fetchStart()); 
+  //   fetchData();
+  //   return () => {      
+  //   }
+  // }, [])
 
   if(!auth.confirmed){
     return <Navigate to='/'/>

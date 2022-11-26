@@ -1,4 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import TaskIcon from '../components/TaskIcon'
@@ -79,6 +82,10 @@ import TaskIcon from '../components/TaskIcon'
     }
   `
 
+  const NoTasksMessage = styled.span`
+  padding-bottom: 15px;
+  `
+
   const numberOfTasksToDisplay = Math.floor((window.innerHeight-414)/64);
 
 //#endregion
@@ -86,6 +93,17 @@ import TaskIcon from '../components/TaskIcon'
 const Services = () => {
 
   const [chosenStage, setChosenStage] = useState(0);
+  // const tasksState = useSelector((state) => state.fetchTasks)
+  // const tasks = useSelector((state) => state.tasks);
+  // const [services, setServices] = useState([]);
+
+  // useEffect(() => {
+  //   if(tasksState.confirmed){
+  //     setServices(tasks.jobs.map((task) => {
+  //       return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+  //     }))
+  //   }
+  // },[tasksState.confirmed])
 
   const handleStageStyle = (x) => {
     if(chosenStage === x){
@@ -109,13 +127,7 @@ const Services = () => {
         <StageTitle style={handleStageStyle(2)} data-nr={2} onClick={handleStageClick}>Wydanie</StageTitle>
       </Stages>
       <TasksContainer>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
-        <TaskIcon/>
+      {/* {tasksState.confirmed ? services : <NoTasksMessage>Brak zadań</NoTasksMessage>} */}
       </TasksContainer>
       <SortBy>
         <SortByTitle>Sortuj</SortByTitle>

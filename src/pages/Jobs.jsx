@@ -1,11 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useReducer, useRef, useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 
-import { useSelector } from 'react-redux'
 import TaskIcon from '../components/TaskIcon'
+import jobsService from '../services/jobsService'
+import { fetchTasksReducer, INITIAL_FETCH_TASKS_STATE } from '../helpers/requestReducers/fetchTasksReducer'
+import { REQUEST_TYPES } from '../helpers/requestReducers/actionTypes'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 //#region STYLES
 
@@ -92,15 +96,30 @@ import TaskIcon from '../components/TaskIcon'
   const PageChoice = styled.div`
     color: #fff;
     display: flex;
+    padding-left: 20px;
+    justify-content: center;
+    align-items: center;
   `
 
   const CurrentPage = styled.span`
-    
+    padding: 0 10px;
+    font-size: 20px;
   `
 
   const ChangePage = styled.div`
-    
+    position: relative;
+    font-size: 20px;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #fff;
+    border-radius: 50%;
   `
+
+  const changePageIcon = {
+    position: 'abolute',
+    top: '50%',
+    left: '50%',
+  }
 
   const NoTasksMessage = styled.span`
     padding-bottom: 15px;
@@ -111,19 +130,43 @@ import TaskIcon from '../components/TaskIcon'
 //#endregion
 
 const Jobs = () => {
-
   const [chosenStage, setChosenStage] = useState(0);
-  const jobsState = useSelector((state) => state.fetchTasks)
-  const tasks = useSelector((state) => state.tasks);
-  const [jobs, setJobs] = useState([]);
+  const [fetchState, fetchDispatch] = useReducer(fetchTasksReducer, INITIAL_FETCH_TASKS_STATE);
+  const [jobsPending, setJobsPending] = useState([]);
+  const [jobsToInvoce, setJobsToInvoice] = useState([]);
+  const [sortBy, setSortBy] = useState("DESC");
+
+  async function fetchData() {    
+    await jobsService.getAll(numberOfTasksToDisplay, 1, "CreatedDate", sortBy)
+      .then((response) => {
+        fetchDispatch({type: REQUEST_TYPES.SUCCESS});
+        setJobsPending(response.data.items.map((task) => {
+          if(task.toInvoice === false){
+            return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+          }else{
+            return null;
+          }
+        }))
+        setJobsToInvoice(response.data.items.map((task) => {
+          if(task.toInvoice === true){
+            return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
+          }else{
+            return null;
+          }
+        }))
+      })
+      .catch((error) => {
+        fetchDispatch({type: REQUEST_TYPES.ERROR});
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
-    if(jobsState.confirmed){
-      setJobs(tasks.jobs.map((task) => {
-        return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
-      }))
+    fetchDispatch({type: REQUEST_TYPES.START});
+    fetchData();
+    return () => {      
     }
-  },[jobsState.confirmed])
+  },[fetchState.success, sortBy])
 
   const handleStageStyle = (x) => {
     if(chosenStage === x){
@@ -136,8 +179,10 @@ const Jobs = () => {
     setChosenStage(parseInt(e.target.getAttribute("data-nr")));
   }  
 
-  console.log(jobs)
-  console.log(jobsState)
+  const handleSortBySelect = (e) => {
+    e.target.value === "Od najnowszych" ? setSortBy("DESC") : setSortBy("ASC");
+  }
+  
 
   return (
     <Container >
@@ -148,17 +193,19 @@ const Jobs = () => {
         <StageTitle style={handleStageStyle(1)} data-nr={1} onClick={handleStageClick}>Fakturowanie</StageTitle>
       </Stages>
       <TasksContainer >
-        {jobsState.confirmed ? jobs : <NoTasksMessage>Brak zadań</NoTasksMessage>}
+        {fetchState.success ? 
+        (chosenStage === 0 ? jobsPending : jobsToInvoce)
+        : <NoTasksMessage>Brak zadań</NoTasksMessage>}
       </TasksContainer>
       <PageSettings>
         <PageChoice>
-          <ChangePage> &#171; </ChangePage>
+          <ChangePage> <NavigateBeforeIcon style={changePageIcon}/> </ChangePage>
           <CurrentPage>1 z 8</CurrentPage>
-          <ChangePage> &#187; </ChangePage>
+          <ChangePage> <NavigateNextIcon style={changePageIcon}/> </ChangePage>
         </PageChoice>
         <SortBy>
           <SortByTitle>Sortuj</SortByTitle>
-          <SortBySelect>
+          <SortBySelect onChange={handleSortBySelect}>
             <option>Od najnowszych</option>
             <option>Od najstarszych</option>
           </SortBySelect>
