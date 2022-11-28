@@ -119,6 +119,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
     position: 'abolute',
     top: '50%',
     left: '50%',
+    pointerEvents: 'none'
   }
 
   const NoTasksMessage = styled.span`
@@ -135,11 +136,15 @@ const Jobs = () => {
   const [jobsPending, setJobsPending] = useState([]);
   const [jobsToInvoce, setJobsToInvoice] = useState([]);
   const [sortBy, setSortBy] = useState("DESC");
+  const [chosenPage, setChosenPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   async function fetchData() {    
-    await jobsService.getAll(numberOfTasksToDisplay, 1, "CreatedDate", sortBy)
+    await jobsService.getAll(numberOfTasksToDisplay, chosenPage, "CreatedDate", sortBy)
       .then((response) => {
+        console.log("fetch")
         fetchDispatch({type: REQUEST_TYPES.SUCCESS});
+        setTotalPages(response.data.totalPages);
         setJobsPending(response.data.items.map((task) => {
           if(task.toInvoice === false){
             return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
@@ -166,7 +171,7 @@ const Jobs = () => {
     fetchData();
     return () => {      
     }
-  },[fetchState.success, sortBy])
+  },[fetchState.success, sortBy, chosenPage])
 
   const handleStageStyle = (x) => {
     if(chosenStage === x){
@@ -177,10 +182,26 @@ const Jobs = () => {
   
   const handleStageClick = (e) => {
     setChosenStage(parseInt(e.target.getAttribute("data-nr")));
+    setChosenPage(1);
   }  
 
   const handleSortBySelect = (e) => {
     e.target.value === "Od najnowszych" ? setSortBy("DESC") : setSortBy("ASC");
+  }
+  
+  const handleChangePageBtn = (e) => {
+    if(e.target.getAttribute("data-direction") === "back"){
+      if(chosenPage > 1){
+        setChosenPage(chosenPage-1);
+        fetchData();
+      }
+    }
+    if(e.target.getAttribute("data-direction") === "forward"){
+      if(chosenPage < totalPages){
+        setChosenPage(chosenPage+1);
+        fetchData();
+      }
+    }
   }
   
 
@@ -199,9 +220,9 @@ const Jobs = () => {
       </TasksContainer>
       <PageSettings>
         <PageChoice>
-          <ChangePage> <NavigateBeforeIcon style={changePageIcon}/> </ChangePage>
-          <CurrentPage>1 z 8</CurrentPage>
-          <ChangePage> <NavigateNextIcon style={changePageIcon}/> </ChangePage>
+          <ChangePage onClick={handleChangePageBtn} data-direction={"back"}> <NavigateBeforeIcon style={changePageIcon}/> </ChangePage>
+          <CurrentPage>{chosenPage} z {totalPages}</CurrentPage>
+          <ChangePage onClick={handleChangePageBtn} data-direction={"forward"}> <NavigateNextIcon style={changePageIcon}/> </ChangePage>
         </PageChoice>
         <SortBy>
           <SortByTitle>Sortuj</SortByTitle>

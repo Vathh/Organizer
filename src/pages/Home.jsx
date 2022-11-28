@@ -56,9 +56,7 @@ const CountersContainer = styled.div`
   color: #fff;
 `
 
-const numberOfTasksToDisplayHome = Math.floor((window.innerHeight-497)/69);
-
-const numberOfTasksToDisplayList = Math.floor((window.innerHeight-414)/64);
+const numberOfTasksToDisplay = Math.floor((window.innerHeight-497)/69);
 
 //#endregion
 
