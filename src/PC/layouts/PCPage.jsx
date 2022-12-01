@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import AddIcon from '@mui/icons-material/Add';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import PCNav from './PCNav';
+import PCSubpage from './PCSubpage';
 
 //#region STYLES
 
@@ -23,6 +21,7 @@ const PCPage = () => {
     <>    
       <Container>
         <PCNav />
+        <PCSubpage />
       </Container>
     </>
   )
