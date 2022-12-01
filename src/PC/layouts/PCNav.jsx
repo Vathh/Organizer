@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import LogoSvg from '../../img/OGARNIZER_PC.svg'
 import AvatarGraphic from '../../img/avatar.jpg'
@@ -15,15 +15,16 @@ import BuildIcon from '@mui/icons-material/Build';
     position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
-       
+    width: 100%;       
     display: flex;
     align-content: center;
+    justify-content: center;
     font-size: 14px;
   `
 
   const LogoContainer = styled.div`    
     flex: 1;
+    background: #420939;
   `
 
   const Logo = styled.img`
@@ -37,21 +38,39 @@ import BuildIcon from '@mui/icons-material/Build';
 
   const NavBtns = styled.div`
     display: flex;
-    margin: auto 0;
     color: #bcbcbc;
   `
 
   const NavBtn = styled.div`
+    position: relative;
+    height: 100%;
     display: flex;
     align-items: center;
     margin: auto 0;
     font-size: 12px;
     padding-right: 15px;
     padding-left: 15px;
-    border-right: 1px solid rgba(255,255,255,.3);
+    background: #420939;
+    cursor: pointer;
+
+    ::after{
+      content: '';
+      width: 1px;
+      height: 60%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.15);
+    }
 
     :last-of-type{
       border-right: none;
+      background: transparent;
+
+      ::after{
+        display: none;
+      }
     }
   `
 
@@ -60,11 +79,12 @@ import BuildIcon from '@mui/icons-material/Build';
   }
 
   const UserPannel = styled.div`
-    margin: auto 0;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
+    background: #420939;
   `
 
   const AvatarContainer = styled.div`
@@ -89,21 +109,56 @@ import BuildIcon from '@mui/icons-material/Build';
 
   const UserName = styled.p`
     color: #fff;
-    
+    padding-left: 10px;
+    padding-right: 15px;
   `
   const UserPannelBtn = styled.div`
-
+    padding-right: 10px;
+    color: #fff;
+    cursor: pointer;
+    
   `
 
   const UserMenu = styled.div`
-
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    height: fit-content;
+    padding: 0 15px;
+    background: #420939;
+    z-index: -1;
+    transition: .3s;
   `
+
+  const UserMenuBtn = styled.div`
+    padding: 10px 0;
+    cursor: pointer;
+  `
+
+  const userMenuVisible = {
+    top: '100%'
+  }
+
+  const userMenuInvisible = {
+    top: '0'
+  }
+
+  const iconUp = {transform: 'rotate(180deg)', transition: '.3s'}
+
+  const iconDown = {transform: 'rotate(0deg)', transition: '.3s'}
 
 //#endregion
 
 const PCNav = () => {
 
   const user = useSelector((state) => state.user);
+  const [userMenuVisibility, setUserMenuVisibility] = useState(false);
+
+  const handleUserMenuVisiblity = () => {
+    setUserMenuVisibility(!userMenuVisibility);
+  }
+  
 
   return (
     <Container>
@@ -122,10 +177,14 @@ const PCNav = () => {
           </AvatarContainer>
           {/* <UserName>{user.name}</UserName> */}
           <UserName>Andrzej</UserName>
-        <UserPannelBtn>
-          <KeyboardArrowDownIcon />
+        <UserPannelBtn onClick={handleUserMenuVisiblity}>
+          <KeyboardArrowDownIcon 
+          style={userMenuVisibility ? iconUp : iconDown}/>
         </UserPannelBtn>
       </UserPannel>
+      <UserMenu style={userMenuVisibility ? userMenuVisible : userMenuInvisible}>
+        <UserMenuBtn>Wyloguj się</UserMenuBtn>
+      </UserMenu>
     </Container>
   )
 }
