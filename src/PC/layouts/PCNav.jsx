@@ -19,21 +19,20 @@ import BuildIcon from '@mui/icons-material/Build';
     display: flex;
     align-content: center;
     justify-content: center;
-    font-size: 14px;
   `
 
-  const LogoContainer = styled.div`    
+  const LogoContainer = styled.div`  
+    height: 44px;  
     flex: 1;
     background: #420939;
+    display: flex;
   `
 
   const Logo = styled.img`
-    height: 30px;
-    justify-self: flex-start;
+    position: relative;
+    height: 36px;
     filter: invert(84%) sepia(21%) saturate(5849%) hue-rotate(351deg) brightness(105%) contrast(91%);  
-    margin: 5px 10px;
-    padding-right: auto;
-    text-align: left;
+    margin: auto 10px;
   `
 
   const NavBtns = styled.div`
@@ -47,35 +46,39 @@ import BuildIcon from '@mui/icons-material/Build';
     display: flex;
     align-items: center;
     margin: auto 0;
-    font-size: 12px;
-    padding-right: 15px;
-    padding-left: 15px;
+    font-size: 18px;
+    padding-right: 20px;
+    padding-left: 20px;
     background: #420939;
     cursor: pointer;
 
-    ::after{
+    ::before{
       content: '';
       width: 1px;
       height: 60%;
       position: absolute;
-      right: 0;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255,255,255,.15);
+      background: rgba(105, 28, 94, 0.7);
     }
 
-    :last-of-type{
-      border-right: none;
-      background: transparent;
-
-      ::after{
+    :first-of-type{
+      ::before{
         display: none;
       }
     }
   `
 
+  const chosenComponentStyles = {
+    background: 'transparent',
+    color: '#fff'
+  }
+
   const NavIconStyles = {
-    fontSize : '19px'
+    fontSize : '20px',
+    pointerEvents: 'none',
+    marginRight: '7px'
   }
 
   const UserPannel = styled.div`
@@ -92,8 +95,8 @@ import BuildIcon from '@mui/icons-material/Build';
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 26px;
-    width: 26px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
     overflow: hidden;
     border: 1px solid #d3d3d3;
@@ -111,6 +114,7 @@ import BuildIcon from '@mui/icons-material/Build';
     color: #fff;
     padding-left: 10px;
     padding-right: 15px;
+    font-size: 18px;
   `
   const UserPannelBtn = styled.div`
     padding-right: 10px;
@@ -133,7 +137,7 @@ import BuildIcon from '@mui/icons-material/Build';
 
   const UserMenuBtn = styled.div`
     padding: 10px 0;
-    cursor: pointer;
+    cursor: pointer;     
   `
 
   const userMenuVisible = {
@@ -154,10 +158,23 @@ const PCNav = () => {
 
   const user = useSelector((state) => state.user);
   const [userMenuVisibility, setUserMenuVisibility] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState(0);
 
   const handleUserMenuVisiblity = () => {
     setUserMenuVisibility(!userMenuVisibility);
   }
+  
+  const handleNavBtnStyles = (e) => {
+    if(currentComponent === e){
+      return chosenComponentStyles;
+    }
+    return null;
+  }
+
+  const handleNavBtn = (e) => {
+    setCurrentComponent(parseInt(e.target.getAttribute("data-nr")));
+  }
+  
   
 
   return (
@@ -166,10 +183,10 @@ const PCNav = () => {
         <Logo src={LogoSvg}/>
       </LogoContainer>
       <NavBtns>
-        <NavBtn> <HouseIcon style={NavIconStyles}/> Start</NavBtn>
-        <NavBtn> <DirectionsCarIcon style={NavIconStyles}/> Wyjazdy</NavBtn>
-        <NavBtn> <BuildIcon style={NavIconStyles}/> Serwisy</NavBtn>
-        <NavBtn> <ShoppingCartIcon style={NavIconStyles}/> Zamówienia</NavBtn>
+        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(0)} data-nr={0}> <HouseIcon style={NavIconStyles}/> Start</NavBtn>
+        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(1)} data-nr={1}> <DirectionsCarIcon style={NavIconStyles}/> Wyjazdy</NavBtn>
+        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(2)} data-nr={2}> <BuildIcon style={NavIconStyles}/> Serwisy</NavBtn>
+        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(3)} data-nr={3}> <ShoppingCartIcon style={NavIconStyles}/> Zamówienia</NavBtn>
       </NavBtns>
       <UserPannel>
         <AvatarContainer>
