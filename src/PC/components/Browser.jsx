@@ -21,6 +21,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
     outline: none;
     color:#fff;
     font-size: 18px;
+    width: 100%;
+    margin-right: 20px;
 
   ::placeholder{
     color: #fff;
