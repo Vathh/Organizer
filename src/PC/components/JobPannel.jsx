@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Avatar from '../../img/avatar.jpg'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+
 //#region STYLES
 
   const Container = styled.div`
@@ -95,11 +96,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
   `
 
   const MenuVisible = {
-    transform: 'scaleY(1)'
+    transform: 'perspective(1px) scaleY(1)'
   }
 
   const MenuInvisible = {    
-    transform: 'scaleY(0.5)'
+    transform: 'perspective(1px) scaleY(0)'
   }
 
   const NavAction = styled.span`
