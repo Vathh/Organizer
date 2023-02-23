@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import LogoSvg from '../../img/OGARNIZER_PC.svg'
-import AvatarGraphic from '../../img/avatar.jpg'
+import LogoSvg from '../img/OGARNIZER_PC.svg'
+import AvatarGraphic from '../img/avatar.jpg'
 import { useSelector } from 'react-redux'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HouseIcon from '@mui/icons-material/House';
@@ -148,13 +148,27 @@ import BuildIcon from '@mui/icons-material/Build';
     top: '0'
   }
 
+  const Wrapper = styled.div`
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+  `
+
+  const NavSpace = styled.div`
+    position: relative;
+    flex-grow: 1;    
+    background: #420939;
+  `
+
   const iconUp = {transform: 'rotate(180deg)', transition: '.3s'}
 
   const iconDown = {transform: 'rotate(0deg)', transition: '.3s'}
 
 //#endregion
 
-const PCNav = () => {
+const Nav = () => {
 
   const user = useSelector((state) => state.user);
   const [userMenuVisibility, setUserMenuVisibility] = useState(false);
@@ -179,31 +193,35 @@ const PCNav = () => {
 
   return (
     <Container>
-      <LogoContainer>
-        <Logo src={LogoSvg}/>
-      </LogoContainer>
-      <NavBtns>
-        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(0)} data-nr={0}> <HouseIcon style={NavIconStyles}/> Start</NavBtn>
-        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(1)} data-nr={1}> <DirectionsCarIcon style={NavIconStyles}/> Wyjazdy</NavBtn>
-        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(2)} data-nr={2}> <BuildIcon style={NavIconStyles}/> Serwisy</NavBtn>
-        <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(3)} data-nr={3}> <ShoppingCartIcon style={NavIconStyles}/> Zamówienia</NavBtn>
-      </NavBtns>
-      <UserPannel>
-        <AvatarContainer>
-            <Avatar src={AvatarGraphic}/>
-          </AvatarContainer>
-          {/* <UserName>{user.name}</UserName> */}
-          <UserName>Andrzej</UserName>
-        <UserPannelBtn onClick={handleUserMenuVisiblity}>
-          <KeyboardArrowDownIcon 
-          style={userMenuVisibility ? iconUp : iconDown}/>
-        </UserPannelBtn>
-      </UserPannel>
-      <UserMenu style={userMenuVisibility ? userMenuVisible : userMenuInvisible}>
-        <UserMenuBtn>Wyloguj się</UserMenuBtn>
-      </UserMenu>
+      <NavSpace />
+      <Wrapper>
+        <LogoContainer>
+          <Logo src={LogoSvg}/>
+        </LogoContainer>
+        <NavBtns>
+          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(0)} data-nr={0}> <HouseIcon style={NavIconStyles}/> Start</NavBtn>
+          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(1)} data-nr={1}> <DirectionsCarIcon style={NavIconStyles}/> Wyjazdy</NavBtn>
+          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(2)} data-nr={2}> <BuildIcon style={NavIconStyles}/> Serwisy</NavBtn>
+          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(3)} data-nr={3}> <ShoppingCartIcon style={NavIconStyles}/> Zamówienia</NavBtn>
+        </NavBtns>
+        <UserPannel>
+          <AvatarContainer>
+              <Avatar src={AvatarGraphic}/>
+            </AvatarContainer>
+            {/* <UserName>{user.name}</UserName> */}
+            <UserName>Andrzej</UserName>
+          <UserPannelBtn onClick={handleUserMenuVisiblity}>
+            <KeyboardArrowDownIcon 
+            style={userMenuVisibility ? iconUp : iconDown}/>
+          </UserPannelBtn>
+        </UserPannel>
+        <UserMenu style={userMenuVisibility ? userMenuVisible : userMenuInvisible}>
+          <UserMenuBtn>Wyloguj się</UserMenuBtn>
+        </UserMenu>
+      </Wrapper>
+      <NavSpace />
     </Container>
   )
 }
 
-export default PCNav
+export default Nav

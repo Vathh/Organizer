@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Avatar from '../../img/avatar.jpg'
+import Avatar from '../img/avatar.jpg'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 

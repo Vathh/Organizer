@@ -1,136 +1,102 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from 'react-router-dom'
-import styled from "styled-components"
-
-import Browser from "../components/Browser";
-import TaskIcon from "../components/TaskIcon";
-import Counter from "../components/Counter";
+import React from 'react'
+import styled from 'styled-components'
+import Browser from '../components/Browser'
+import GrainIcon from '@mui/icons-material/Grain';
 
 //#region STYLES
 
-const Container = styled.div`
-  position: relative;
-  min-height: 100vh;
-  min-width: 100vw;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 50px;
-`
+  const Container = styled.div`
+    position: relative;
+    min-width: 800px;
+    max-width: 1400px;
+    background: rgba(0,0,0,.1);
+    margin: 0 auto;
+    padding: 40px 0 0;
+    display: flex;
+  `
 
-const Welcome = styled.span`
-  font-size: 16px;
-  margin-top: 20px;
-  color: #767676;
-`
-const WelcomeDate = styled.span`
-  margin-top: 10px;
-  font-size: 22px;
-  color: #fff;
-  margin-bottom: 20px;
-`
+  const LeftSide = styled.div`
+    position: relative;
+    flex: 3;
+  `
 
-const TasksContainer = styled.div`
-  position: relative;
-  width: 80%;
-  margin-top: 30px;
-  color: #fff;
-  background-color: transparent;
-`
+  const TopSide = styled.div`
+    display: flex;
+    justify-content: space-between;
+  `
 
-const Title = styled.p`
-  font-size: 18px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-`
+  const CenterSide = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  `
 
-const CountersContainer = styled.div`
-  position: relative;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-top: 25px;
-  color: #fff;
-`
+  const RightSide = styled.div`
+    flex: 1;
+    background: #FFF;
+  `
 
-const numberOfTasksToDisplay = Math.floor((window.innerHeight-497)/69);
+  const PageTitle = styled.p`
+    color: #fff;
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    font-family: 'Oswald', sans-serif;
+    margin-left: 40px;
+  `
+
+  const AddTaskPannel = styled.div`
+    position: relative;
+    height: fit-content;
+    align-self: center;
+  `
+
+  const AddTaskButton = styled.div`
+    position: relative;
+    color: #fff;
+    background: #e6666c;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 35px;
+    transition: transform .3s;
+
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  `
+
+  const grainIconStyles = {
+    position: 'absolute',
+    background: 'transparent',
+    color: '#aaa',
+    left: '-50px',
+    top: '50%',
+    transform: 'translateY(-50%)'
+  }
 
 //#endregion
 
-
 const Home = () => {
-
-  const dayOfWeek = new Date().toLocaleDateString('pl-PL', { weekday: 'long' }); 
-  const dayOfWeekToDisplay = dayOfWeek.charAt(0).toUpperCase() + dayOfWeek.slice(1);
-  const dayOfMonth = new Date().getDate();  
-  const user = useSelector((state) => state.user);
-  const auth = useSelector((state) => state.auth); 
-  const dispatch = useDispatch();
-
-  // async function fetchData() {
-  //   await JOBSSERVICE.getAll(numberOfTasksToDisplayList, 1, "CreatedDate", "DESC")
-  //     .then((response) => {
-  //       // const jobs = response.data.items.map((task) => {
-  //       //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
-  //       // });
-  //       dispatch(updateJobs({jobs: response.data.items}));
-  //       dispatch(fetchSuccess()); 
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       dispatch(fetchError()); 
-  //     });
-
-  //   await SERVICESSERICE.getAll(numberOfTasksToDisplayList, 1, "CreatedDate", "DESC")
-  //   .then((response) => {
-  //     // const jobs = response.data.items.map((task) => {
-  //     //   return <TaskIcon key={task.description} homeStyles={false} title={task.description}/>
-  //     // });
-  //     dispatch(updateServices({services: response.data.items}));
-  //     dispatch(fetchSuccess()); 
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     dispatch(fetchError()); 
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   dispatch(fetchStart()); 
-  //   fetchData();
-  //   return () => {      
-  //   }
-  // }, [])
-
-  if(!auth.confirmed){
-    return <Navigate to='/'/>
-  }
   return (
-    <Container>        
-        <Welcome>
-          Cześć, {user.name} !
-        </Welcome>
-        <WelcomeDate>
-          {dayOfWeekToDisplay}, {dayOfMonth}
-        </WelcomeDate>
-        <Browser />
-        <CountersContainer>
-          <Counter/>
-          <Counter/>
-          <Counter/>
-        </CountersContainer>
-        <TasksContainer >
-          <Title>Ostatnio dodane</Title>
-          <TaskIcon homeStyles={true}/>
-          <TaskIcon homeStyles={true}/> 
-          <TaskIcon homeStyles={true}/> 
-          <TaskIcon homeStyles={true}/> 
-          <TaskIcon homeStyles={true}/> 
-        </TasksContainer>
-    </Container>      
+    <Container>
+      <LeftSide>
+        <TopSide>
+          <PageTitle>Serwis Komputerix</PageTitle>
+          <AddTaskPannel>
+            <AddTaskButton>Nowe zadanie</AddTaskButton>          
+            <GrainIcon style={grainIconStyles}/>
+          </AddTaskPannel>
+        </TopSide>
+        <CenterSide>
+          <Browser />
+        </CenterSide>
+      </LeftSide>
+      <RightSide>
+      </RightSide>
+    </Container>
   )
 }
 
