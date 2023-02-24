@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import GrainIcon from '@mui/icons-material/Grain';
+import JobPannel from '../components/JobPannel';
+import StatisticsPannel from '../components/StatisticsPannel';
 
 //#region STYLES
 
@@ -9,9 +11,9 @@ import GrainIcon from '@mui/icons-material/Grain';
     position: relative;
     min-width: 800px;
     max-width: 1400px;
-    background: rgba(0,0,0,.1);
+    /* background: rgba(0,0,0,.1); */
     margin: 0 auto;
-    padding: 40px 0 0;
+    padding: 40px 0 100px;
     display: flex;
   `
 
@@ -31,9 +33,20 @@ import GrainIcon from '@mui/icons-material/Grain';
     justify-content: center;
   `
 
+  const BottomSide = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `
+
   const RightSide = styled.div`
     flex: 1;
     background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
   `
 
   const PageTitle = styled.p`
@@ -77,6 +90,18 @@ import GrainIcon from '@mui/icons-material/Grain';
     transform: 'translateY(-50%)'
   }
 
+  const Subtitle = styled.p`
+    font-size: 30px;
+    color: #fff;
+  `
+
+  const BottomSideBox = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  `
+
 //#endregion
 
 const Home = () => {
@@ -91,10 +116,37 @@ const Home = () => {
           </AddTaskPannel>
         </TopSide>
         <CenterSide>
-          <Browser />
+          <Browser withFilter={true} />
         </CenterSide>
+        <BottomSide>
+          <Subtitle>Pilne</Subtitle>
+          <BottomSideBox>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+            <JobPannel></JobPannel>
+          </BottomSideBox>
+        </BottomSide>
       </LeftSide>
       <RightSide>
+        <StatisticsPannel />
       </RightSide>
     </Container>
   )

@@ -8,10 +8,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
   const Container = styled.div`
     position: relative;
-    width: 100%;
+    width: 250px;
     background: rgba(255,255,255,.2);
     border: 1px solid rgba(255,255,255,.4);
-    margin-top: 15px;
+    margin: 15px 10px 0;
     border-radius: 15px;
     padding: 10px;
   `
