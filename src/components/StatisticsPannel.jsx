@@ -1,79 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
+import StatsChart from './StatsChart'
 
 //#region STYLES
 
   const Container = styled.div`
-    height: 300px;
-    width: 300px;
-    background: rgba(0,0,0,.1);
+    /* background: rgba(0,0,0,.1); */
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  `
+
+  const StatsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    font-family: arial;
-    font-size: 16px;
-    margin: 0;
-    background:#171f1a;
+    background-color: rgba(255,255,255,.1);
+
+    margin-top: 30px;
+  `
+
+  const StatsTypeTitle = styled.p`
+    font-size: 28px;
     color: #fff;
   `
-
-  const OutsideCircle = styled.div`
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    background-color: red;
-  `
-
-  const InsideCircle = styled.div`
-    position: absolute;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    clip: rect(0px, 75px, 75px, 0px);
-    background-color: #227ded;
-    transform: rotate(135deg);
-  `
-
-  const XBox = styled.div`
-    width: 70vh;
-    height: 70vh;
-    border-radius: 50%;
-    background-color:green;
-    background:repeating-conic-gradient(
-      from 0deg,
-      #ff264a 0deg calc(3.6deg * 35),
-      #feec1e calc(3.6deg * 35) calc(3.6deg * 70),
-      #12CBC4 calc(3.6deg * 70) calc(3.6deg * 100)
-    );
-  `
-
-  const XBoxCont = styled.div`
-    font-size: 30px;
-    padding-left: 50px;
-
-    h1{
-      font-size: 30px;
-	    text-transform: uppercase;
-    }
-
-    strong{
-      display: block;
-	    margin-bottom: 15px;
-    }
-  `
-
-  const style1 = {
-    color: '#ff264a'
-  }
-
-  const style2 = {
-    color: '#feec1e'
-  }
-
-  const style3 = {
-    color: '#12CBC4'
-  }
 
 
 //#endregion
@@ -81,13 +34,18 @@ import styled from 'styled-components'
 const StatisticsPannel = () => {
   return (
     <Container>
-      <XBox ></XBox>
-      <XBoxCont >
-        <h1>Seasons of the year</h1>
-        <strong style={style1}>Summer 35%</strong>
-        <strong style={style2}>Monsoon 35%</strong>
-        <strong style={style3}>Winter 30%</strong>
-      </XBoxCont>
+      <StatsContainer>
+        <StatsTypeTitle>Wyjazdy</StatsTypeTitle>
+        <StatsChart highPriority={100} mediumPriority={60} lowPriority={30}/>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsTypeTitle>Serwisy</StatsTypeTitle>
+        <StatsChart highPriority={15} mediumPriority={45} lowPriority={40}/>
+      </StatsContainer>
+      <StatsContainer>
+        <StatsTypeTitle>Zamówienia</StatsTypeTitle>
+        <StatsChart highPriority={5} mediumPriority={80} lowPriority={15}/>
+      </StatsContainer>
     </Container>
   )
 }

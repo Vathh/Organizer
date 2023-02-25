@@ -42,7 +42,7 @@ import StatisticsPannel from '../components/StatisticsPannel';
 
   const RightSide = styled.div`
     flex: 1;
-    background: #FFF;
+    /* background: rgba(255,255,255,.1); */
     display: flex;
     flex-direction: column;
     align-items: center;
