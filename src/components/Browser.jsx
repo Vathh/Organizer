@@ -48,8 +48,6 @@ import BrowserFilter from './BrowserFilter';
 
 const Browser = ({withFilter}) => {
 
-  
-
   const handleSearchBtn = () => {
     
   }
