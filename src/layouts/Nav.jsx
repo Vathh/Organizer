@@ -8,6 +8,7 @@ import HouseIcon from '@mui/icons-material/House';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import BuildIcon from '@mui/icons-material/Build';
+import { Link } from 'react-router-dom'
 
 //#region STYLES
 
@@ -40,7 +41,7 @@ import BuildIcon from '@mui/icons-material/Build';
     color: #bcbcbc;
   `
 
-  const NavBtn = styled.div`
+  const NavBtn = styled(Link)`
     position: relative;
     height: 100%;
     display: flex;
@@ -51,6 +52,8 @@ import BuildIcon from '@mui/icons-material/Build';
     padding-left: 20px;
     background: #420939;
     cursor: pointer;
+    text-decoration: none;
+    color: #bcbcbc;
 
     ::before{
       content: '';
@@ -178,8 +181,8 @@ const Nav = () => {
     setUserMenuVisibility(!userMenuVisibility);
   }
   
-  const handleNavBtnStyles = (e) => {
-    if(currentComponent === e){
+  const handleNavBtnStyles = (param) => {
+    if(currentComponent === param){
       return chosenComponentStyles;
     }
     return null;
@@ -187,9 +190,7 @@ const Nav = () => {
 
   const handleNavBtn = (e) => {
     setCurrentComponent(parseInt(e.target.getAttribute("data-nr")));
-  }
-  
-  
+  }  
 
   return (
     <Container>
@@ -199,10 +200,10 @@ const Nav = () => {
           <Logo src={LogoSvg}/>
         </LogoContainer>
         <NavBtns>
-          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(0)} data-nr={0}> <HouseIcon style={NavIconStyles}/> Start</NavBtn>
-          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(1)} data-nr={1}> <DirectionsCarIcon style={NavIconStyles}/> Wyjazdy</NavBtn>
-          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(2)} data-nr={2}> <BuildIcon style={NavIconStyles}/> Serwisy</NavBtn>
-          <NavBtn onClick={handleNavBtn} style={handleNavBtnStyles(3)} data-nr={3}> <ShoppingCartIcon style={NavIconStyles}/> Zamówienia</NavBtn>
+          <NavBtn to='/home' onClick={handleNavBtn} style={handleNavBtnStyles(0)} data-nr={0}> <HouseIcon style={NavIconStyles}/>Start</NavBtn>
+          <NavBtn to='/jobs' onClick={handleNavBtn} style={handleNavBtnStyles(1)} data-nr={1}> <DirectionsCarIcon style={NavIconStyles}/>Wyjazdy</NavBtn>
+          <NavBtn to='/services' onClick={handleNavBtn} style={handleNavBtnStyles(2)} data-nr={2}> <BuildIcon style={NavIconStyles}/>Serwisy</NavBtn>
+          <NavBtn to='/orders' onClick={handleNavBtn} style={handleNavBtnStyles(3)} data-nr={3}> <ShoppingCartIcon style={NavIconStyles}/>Zamówienia</NavBtn>
         </NavBtns>
         <UserPannel>
           <AvatarContainer>

@@ -15,6 +15,7 @@ const FilterContainer = styled.div`
   height: 100%;
   padding-left: 15px;
   padding-right: 30px;
+  z-index: 1;
 
   &::after{
     content: "";
