@@ -57,9 +57,11 @@ import TitleRow from '../components/TitleRow'
     color: #fff;
   `
 
+
+
 //#endregion
 
-const Jobs = () => {
+const Orders = () => {
   return (
     <Container>
       <TopSide>
@@ -73,25 +75,25 @@ const Jobs = () => {
       <BottomSide>
         <BottomSideColumn>
           <ColumnName>Nowe</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
         </BottomSideColumn>
         <BottomSideColumn>
           <ColumnName>Oczekujące</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
         </BottomSideColumn>        
         <BottomSideColumn>
           <ColumnName>Do rozliczenia</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
+          <TaskPannel type='order' />
         </BottomSideColumn>
       </BottomSide>
     </Container>
   )
 }
 
-export default Jobs
+export default Orders

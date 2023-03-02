@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import StatsChart from './StatsChart'
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CategoryStamp from './CategoryStamp';
 
 //#region STYLES
@@ -12,7 +11,7 @@ import CategoryStamp from './CategoryStamp';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 40px;
+    padding: 10px 40px 40px;
     border-radius: 25px;
   `
 
@@ -53,7 +52,7 @@ const StatisticsPannel = () => {
           <CategoryStamp icon="new" description="Nowe" amount="14"/>
           <CategoryStamp icon="pending" description="Oczekujące" amount="7"/>
           <CategoryStamp icon="toInvoice" description="Do rozliczenia" amount="3"/>
-          <CategoryStamp icon="total" description="Suma" amount="24"/>
+          <CategoryStamp icon="toRelease" description="Do wydania" amount="4"/>
         </CategoriesBox>
       </StatsContainer>
       <StatsContainer>
@@ -63,7 +62,7 @@ const StatisticsPannel = () => {
           <CategoryStamp icon="new" description="Nowe" amount="4"/>
           <CategoryStamp icon="pending" description="Oczekujące" amount="9"/>
           <CategoryStamp icon="toInvoice" description="Do rozliczenia" amount="12"/>
-          <CategoryStamp icon="total" description="Suma" amount="25"/>
+          <CategoryStamp icon="toRelease" description="Do wydania" amount="5"/>
         </CategoriesBox>
       </StatsContainer>
       <StatsContainer>
@@ -73,7 +72,7 @@ const StatisticsPannel = () => {
           <CategoryStamp icon="new" description="Nowe" amount="1"/>
           <CategoryStamp icon="pending" description="Oczekujące" amount="5"/>
           <CategoryStamp icon="toInvoice" description="Do rozliczenia" amount="2"/>
-          <CategoryStamp icon="total" description="Suma" amount="8"/>
+          <CategoryStamp icon="toRelease" description="Do wydania" amount="8"/>
         </CategoriesBox>
       </StatsContainer>
     </Container>

@@ -3,9 +3,11 @@ import styled from 'styled-components'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import FunctionsIcon from '@mui/icons-material/Functions';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
-const Container = styled.div`
+//#region STYLES
+
+  const Container = styled.div`
     position: absolute;
     width: 47%;
     height: 47%;
@@ -16,7 +18,7 @@ const Container = styled.div`
       top: 0;
       left: 0;
     }
-    
+
     :nth-of-type(2){
       background: #37a3e2;      
       top: 0;
@@ -28,7 +30,7 @@ const Container = styled.div`
       bottom: 0;
       left: 0;
     }
-    
+
     :nth-of-type(4){
       background: #1AB1B0;      
       bottom: 0;
@@ -40,7 +42,7 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    
+
     :first-of-type{
       top: 0;
       left: 0;     
@@ -84,6 +86,8 @@ const Container = styled.div`
     left: 10px;
   `
 
+//#endregion
+
   function renderSwitch(param){
     switch(param){
       case 'new':
@@ -92,10 +96,10 @@ const Container = styled.div`
         return <HourglassEmptyIcon style={categoryIconStyles}/>;
       case 'toInvoice':
         return <AttachMoneyIcon style={categoryIconStyles}/>;
-      case 'total':
-        return <FunctionsIcon style={categoryIconStyles}/>;
+      case 'toRelease':
+        return <ArrowOutwardIcon style={categoryIconStyles}/>;
       default:
-        return <FunctionsIcon style={categoryIconStyles}/>;
+        return <ArrowOutwardIcon style={categoryIconStyles}/>;
     }
   }
 

@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
 import GrainIcon from '@mui/icons-material/Grain';
-import JobPannel from '../components/JobPannel';
 import StatisticsPannel from '../components/StatisticsPannel';
+import TaskPannel from '../components/TaskPannel';
+import TitleRow from '../components/TitleRow';
 
 //#region STYLES
 
@@ -20,11 +21,6 @@ import StatisticsPannel from '../components/StatisticsPannel';
   const LeftSide = styled.div`
     position: relative;
     flex: 3;
-  `
-
-  const TopSide = styled.div`
-    display: flex;
-    justify-content: space-between;
   `
 
   const CenterSide = styled.div`
@@ -49,47 +45,6 @@ import StatisticsPannel from '../components/StatisticsPannel';
     padding-top: 20px;
   `
 
-  const PageTitle = styled.p`
-    color: #fff;
-    font-size: 34px;
-    font-weight: 500;
-    letter-spacing: .5px;
-    font-family: 'Oswald', sans-serif;
-    margin-left: 40px;
-  `
-
-  const AddTaskPannel = styled.div`
-    position: relative;
-    height: fit-content;
-    align-self: center;
-  `
-
-  const AddTaskButton = styled.div`
-    position: relative;
-    color: #fff;
-    background: #e6666c;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-weight: 600;
-    font-size: 18px;
-    margin-right: 35px;
-    transition: transform .3s;
-
-    &:hover{
-      cursor: pointer;
-      transform: scale(1.1);
-    }
-  `
-
-  const grainIconStyles = {
-    position: 'absolute',
-    background: 'transparent',
-    color: '#aaa',
-    left: '-50px',
-    top: '50%',
-    transform: 'translateY(-50%)'
-  }
-
   const Subtitle = styled.p`
     font-size: 30px;
     color: #fff;
@@ -108,40 +63,34 @@ const Home = () => {
   return (
     <Container>
       <LeftSide>
-        <TopSide>
-          <PageTitle>Serwis Komputerix</PageTitle>
-          <AddTaskPannel>
-            <AddTaskButton>Nowe zadanie</AddTaskButton>          
-            <GrainIcon style={grainIconStyles}/>
-          </AddTaskPannel>
-        </TopSide>
+        <TitleRow />
         <CenterSide>
           <Browser withFilter={true} />
         </CenterSide>
         <BottomSide>
           <Subtitle>Pilne</Subtitle>
           <BottomSideBox>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
-            <JobPannel></JobPannel>
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
+            <TaskPannel type='job'></TaskPannel >
           </BottomSideBox>
         </BottomSide>
       </LeftSide>

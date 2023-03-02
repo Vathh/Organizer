@@ -117,7 +117,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
   
 //#endregion
 
-const JobPannel = () => {
+const TaskPannel = ({type}) => {
 
   const [menuVisibility, setMenuVisibility] = useState(false);
 
@@ -129,7 +129,10 @@ const JobPannel = () => {
   return (
     <Container>
       <Description>Naprawa c253 <Priority /></Description>
-      <Category>Miejsce: <Info>Padma 3.0 magazyn</Info></Category>
+
+      {type === 'job' && <Category>Miejsce: <Info>Padma 3.0 magazyn</Info></Category>}
+      {type === 'order' && <Category>Klient: <Info>Padma</Info></Category>}
+      
       <Category>Urządzenie: <Info>BIZHUB 223</Info></Category>
       <Category>Dodatkowe informacje: <Info>Brudzi, sprawdzic beben i transfer</Info></Category>
       <Category>Aktualizacja: <Info>Test test</Info></Category>
@@ -148,4 +151,4 @@ const JobPannel = () => {
   )
 }
 
-export default JobPannel
+export default TaskPannel

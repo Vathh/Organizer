@@ -14,6 +14,7 @@ import TitleRow from '../components/TitleRow'
     padding: 40px 0 100px;
     display: flex;
     flex-direction: column;
+
   `
 
   const TopSide = styled.div`
@@ -55,11 +56,11 @@ import TitleRow from '../components/TitleRow'
   const ColumnName = styled.span`
     font-size: 30px;
     color: #fff;
-  `
+  ` 
 
 //#endregion
 
-const Jobs = () => {
+const Services = () => {
   return (
     <Container>
       <TopSide>
@@ -73,25 +74,25 @@ const Jobs = () => {
       <BottomSide>
         <BottomSideColumn>
           <ColumnName>Nowe</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
         </BottomSideColumn>
         <BottomSideColumn>
           <ColumnName>Oczekujące</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
         </BottomSideColumn>        
         <BottomSideColumn>
           <ColumnName>Do rozliczenia</ColumnName>
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
-          <TaskPannel type='job' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
+          <TaskPannel type='service' />
         </BottomSideColumn>
       </BottomSide>
     </Container>
   )
 }
 
-export default Jobs
+export default Services
