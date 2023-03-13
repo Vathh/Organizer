@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import AddTaskPannel from './AddTaskPannel';
 import Nav from './Nav';
 import Subpage from './Subpage';
 
@@ -22,6 +23,7 @@ const Page = () => {
       <Container>
         <Nav />
         <Subpage />
+        <AddTaskPannel  />
       </Container>
     </>
   )

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Browser from '../components/Browser'
-import GrainIcon from '@mui/icons-material/Grain';
 import StatisticsPannel from '../components/StatisticsPannel';
 import TaskPannel from '../components/TaskPannel';
 import TitleRow from '../components/TitleRow';
