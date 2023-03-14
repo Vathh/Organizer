@@ -14,7 +14,6 @@ import TitleRow from '../components/TitleRow'
     padding: 40px 0 100px;
     display: flex;
     flex-direction: column;
-
   `
 
   const TopSide = styled.div`
