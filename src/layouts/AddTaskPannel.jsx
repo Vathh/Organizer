@@ -12,6 +12,7 @@ import styled from 'styled-components'
     width: 100%;
     z-index: 100;
     color: #ccc;
+    display: none;
     /* top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
@@ -27,6 +28,7 @@ import styled from 'styled-components'
     border-radius: 30px;
     padding: 20px 10px;
     display: flex;
+    /* display: none; */
     flex-direction: column;
 
     min-height: 400px;
